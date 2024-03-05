@@ -2,7 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import RootLayout from "../components/layouts/root-layout";
+
+import MainLayout from "../components/layouts/MainLayout";
 
 function HomePage() {
    return (
@@ -37,7 +38,7 @@ function HomePage() {
 }
 
 HomePage.getLayout = (page) => {
-   return <RootLayout>{page}</RootLayout>;
+   return <MainLayout>{page}</MainLayout>;
 };
 
 export default HomePage;

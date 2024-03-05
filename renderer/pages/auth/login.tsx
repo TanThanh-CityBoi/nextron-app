@@ -22,7 +22,7 @@ export default function Logins() {
          </div>
          <div className="my-5 w-full flex-wrap flex justify-center">
             <Link href="/home">
-               <a className="btn-blue">Login to app</a>
+               <a>Login to app</a>
             </Link>
          </div>
       </React.Fragment>

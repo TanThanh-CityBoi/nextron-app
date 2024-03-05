@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import RootLayout from "../../components/layouts/root-layout";
+import MainLayout from "../../components/layouts/MainLayout";
 
 const Members = () => {
    return (
@@ -20,7 +20,7 @@ const Members = () => {
 };
 
 Members.getLayout = (page) => {
-   return <RootLayout>{page}</RootLayout>;
+   return <MainLayout>{page}</MainLayout>;
 };
 
 export default Members;

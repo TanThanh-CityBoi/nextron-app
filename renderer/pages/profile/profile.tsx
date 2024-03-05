@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import RootLayout from "../../components/layouts/root-layout";
+import MainLayout from "../../components/layouts/MainLayout";
 
 const Profile = () => {
    return (
@@ -31,7 +31,7 @@ const Profile = () => {
 };
 
 Profile.getLayout = (page) => {
-   return <RootLayout>{page}</RootLayout>;
+   return <MainLayout>{page}</MainLayout>;
 };
 
 export default Profile;

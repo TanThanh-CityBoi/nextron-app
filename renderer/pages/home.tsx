@@ -9,7 +9,7 @@ function HomePage() {
    return (
       <Fragment>
          <Head>
-            <title>Home - Nextrons</title>
+            <title>Home - Nextron</title>
          </Head>
          <div className="grid grid-col-1 text-2xl w-full text-center">
             <div>
@@ -22,16 +22,8 @@ function HomePage() {
                />
             </div>
          </div>
-         <div className="my-5 w-full flex-wrap flex justify-center">
-            <Link href="/profile/profile">
-               <a className="btn-blue">Go to profile</a>
-            </Link>
-         </div>
-
-         <div className="mt-1 w-full flex-wrap flex justify-center">
-            <Link href="/members/members">
-               <a className="btn-blue">Go to members page</a>
-            </Link>
+         <div className="flex justify-center items-center w-full">
+            <h1>Home Page</h1>
          </div>
       </Fragment>
    );

@@ -37,13 +37,13 @@ const MenuData: Array<MenuItemType> = [
       id: "users",
       icon: <AiOutlineUser size={27} />,
       label: "Thành viên",
-      link: "/profile/profile",
+      link: "/members/members",
       children: [
          {
             id: "users-management",
             label: "Thành viên",
             icon: <RxDotFilled />,
-            link: "/home",
+            link: "/members/members",
          },
          {
             id: "admins-management",
@@ -57,13 +57,13 @@ const MenuData: Array<MenuItemType> = [
       id: "posts",
       icon: <IoNewspaperOutline size={27} />,
       label: "Bài viết",
-      link: "/home",
+      link: "/news/news",
       children: [
          {
             id: "pots-management",
             label: "Bài viết",
             icon: <RxDotFilled />,
-            link: "/home",
+            link: "/news/news",
          },
       ],
    },

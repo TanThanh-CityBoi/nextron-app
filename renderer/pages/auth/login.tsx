@@ -1,13 +1,27 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Logins() {
+export default function Login() {
+   const [user, setUser] = useState("none user");
+
+   const hanleLogin = async () => {
+      window.ipc.send("login-send", {
+         username: "admin",
+         password: "123123",
+      });
+
+      window.ipc.on("login-reply", (arg: any) => {
+         console.log("🚀 ~ window.ipc.on ~ login-reply:", arg);
+         setUser(arg);
+      });
+   };
+
    return (
       <Fragment>
          <Head>
-            <title>Home - Nextron (with-tailwindcss)</title>
+            <title>Login - Nextron</title>
          </Head>
          <div className="grid grid-col-1 text-2xl w-full text-center">
             <div>
@@ -21,10 +35,14 @@ export default function Logins() {
             </div>
          </div>
          <div className="my-5 w-full flex-wrap flex justify-center">
-            <Link href="/home">
+            {/* <Link href="/home">
                <a>Login to app</a>
-            </Link>
+            </Link> */}
+
+            <button onClick={() => hanleLogin()}>Login</button>
          </div>
+
+         <div>{JSON.stringify(user || "none res")}</div>
       </Fragment>
    );
 }

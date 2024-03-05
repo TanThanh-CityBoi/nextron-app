@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import Sider from "antd/es/layout/Sider";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "antd";
+import { Menu, Layout } from "antd";
 import { useRouter } from "next/router";
 
 import { MenuData, MenuItemType, ChildMenuItemType } from "./MenuData";
 
 const Sidebar = ({ collapsed }: any) => {
+   const { Sider } = Layout;
    const router = useRouter();
 
    const [currentKey, seCurrentKey] = useState([""]);
@@ -57,7 +57,7 @@ const Sidebar = ({ collapsed }: any) => {
             style={{ background: "#FFF" }}
             trigger={null}
             collapsible
-            width={280}
+            width={260}
             collapsed={collapsed}
          >
             <div className="flex items-center justify-center py-6 px-6">

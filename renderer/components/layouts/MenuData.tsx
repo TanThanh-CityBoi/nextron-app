@@ -1,6 +1,5 @@
 import { ReactElement } from "react";
 import { AiOutlineUser } from "react-icons/ai";
-import { TbDashboard } from "react-icons/tb";
 import { RxDotFilled } from "react-icons/rx";
 import { IoNewspaperOutline, IoHomeOutline } from "react-icons/io5";
 
@@ -23,12 +22,12 @@ const MenuData: Array<MenuItemType> = [
    {
       id: "home",
       icon: <IoHomeOutline size={26} />,
-      label: "Bảng điều khiển",
+      label: "Trang chủ",
       link: "/home",
       children: [
          {
             id: "dashboard",
-            label: "Bảng điều khiển",
+            label: "Trang chủ",
             icon: <RxDotFilled />,
             link: "/home",
          },

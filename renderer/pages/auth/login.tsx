@@ -1,11 +1,11 @@
-import React from "react";
+import { Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Logins() {
    return (
-      <React.Fragment>
+      <Fragment>
          <Head>
             <title>Home - Nextron (with-tailwindcss)</title>
          </Head>
@@ -25,6 +25,6 @@ export default function Logins() {
                <a>Login to app</a>
             </Link>
          </div>
-      </React.Fragment>
+      </Fragment>
    );
 }

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Layout } from "antd";
 
 const MainLayout = ({ children }) => {
-   const [collapsed, setCollapsed] = useState(false);
+   const [collapsed, setCollapsed] = useState(true);
 
    return (
       <>

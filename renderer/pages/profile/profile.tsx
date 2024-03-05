@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import MainLayout from "../../components/layouts/MainLayout";
 
 const Profile = () => {
    return (
-      <React.Fragment>
+      <Fragment>
          <Head>
             <title>Home - Nextron (with-tailwindcss)</title>
          </Head>
@@ -26,7 +26,7 @@ const Profile = () => {
                <a className="btn-blue">Go to home page</a>
             </Link>
          </div>
-      </React.Fragment>
+      </Fragment>
    );
 };
 

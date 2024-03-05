@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import MainLayout from "../components/layouts/MainLayout";
 
 function HomePage() {
    return (
-      <React.Fragment>
+      <Fragment>
          <Head>
             <title>Home - Nextrons</title>
          </Head>
@@ -33,7 +33,7 @@ function HomePage() {
                <a className="btn-blue">Go to members page</a>
             </Link>
          </div>
-      </React.Fragment>
+      </Fragment>
    );
 }
 

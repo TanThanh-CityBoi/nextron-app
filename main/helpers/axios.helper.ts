@@ -1,10 +1,9 @@
 import axios from "axios";
 import Store from "electron-store";
-import { API_CONFIG } from "@common/config";
+import { API_CONFIG } from "@/common/api.config";
 
 const axiosInstance = () => {
    const ELECTRON_STORAGE = new Store();
-
    const instance = axios.create({
       baseURL: API_CONFIG.API_URL,
       withCredentials: true,

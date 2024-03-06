@@ -1,19 +1,27 @@
-import path from 'path'
 import { app, powerMonitor } from "electron";
 import serve from "electron-serve";
 import schedule from "node-schedule";
+import path from "path";
 
 import { createWindow } from "./helpers";
 import ipcEventHandler from "./ipc";
 
-const isProd = process.env.NODE_ENV === "production";
+import * as dotenv from "dotenv";
+dotenv.config({
+   path: app.isPackaged
+      ? path.join(process.resourcesPath, ".env")
+      : path.resolve(process.cwd(), ".env"),
+});
 
+//
+const isProd = process.env.NODE_ENV === "production";
 if (isProd) {
    serve({ directory: "app" });
 } else {
    app.setPath("userData", `${app.getPath("userData")} (development)`);
 }
 
+//
 (async () => {
    await app.whenReady();
 
@@ -36,13 +44,13 @@ if (isProd) {
       mainWindow.webContents.openDevTools();
    }
    // Reload app
-   const scheduledJob = schedule.scheduleJob("*/10 * * * * *", () => {
+   const scheduledJob = schedule.scheduleJob("0 1 * * *", () => {
       mainWindow.reload();
    });
 
    powerMonitor.on("resume", () => {
       console.log("resumed!");
-      scheduledJob.reschedule("*/2 * * * * *");
+      scheduledJob.reschedule("0 1 * * *");
    });
 
    powerMonitor.on("suspend", () => {

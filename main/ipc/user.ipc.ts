@@ -1,6 +1,6 @@
 import { ipcMain } from "electron";
 import { userAPI } from "@main/api";
-import { IPC_MESSAGE } from "@common/ipc-message";
+import { IPC_MESSAGE } from "@/common/ipc.message";
 
 function userEventHandler() {
    ipcMain.on(IPC_MESSAGE.LOGIN_SEND, async (event, arg) => {

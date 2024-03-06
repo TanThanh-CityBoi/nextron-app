@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-import { IPC_MESSAGE } from "@common/ipc-message";
+import { IPC_MESSAGE } from "@/common/ipc.message";
 
 export default function Login() {
    const [user, setUser] = useState("none user");

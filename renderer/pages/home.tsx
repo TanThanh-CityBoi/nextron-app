@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-import MainLayout from "../components/layouts/MainLayout";
+import MainLayout from "@renderer/components/layouts/MainLayout";
 
 function HomePage() {
    return (

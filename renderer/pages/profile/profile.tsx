@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import MainLayout from "../../components/layouts/MainLayout";
+import MainLayout from "@renderer/components/layouts/MainLayout";
 
 const Profile = () => {
    return (

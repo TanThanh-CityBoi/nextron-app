@@ -1,6 +1,6 @@
 import axios from "axios";
-import { API_CONFIG } from "../../common/config";
 import Store from "electron-store";
+import { API_CONFIG } from "@common/config";
 
 const axiosInstance = () => {
    const ELECTRON_STORAGE = new Store();

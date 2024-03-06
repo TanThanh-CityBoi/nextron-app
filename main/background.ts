@@ -1,8 +1,9 @@
 import path from 'path'
-import { app, ipcMain } from 'electron'
-import serve from 'electron-serve'
-import { createWindow } from './helpers'
-import { userAPI } from "./api";
+import { app } from "electron";
+import serve from "electron-serve";
+
+import { createWindow } from "./helpers";
+import ipcEventHandler from "./ipc";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -39,21 +40,4 @@ app.on("window-all-closed", () => {
    app.quit();
 });
 
-ipcMain.on("login-send", async (event, arg) => {
-   userAPI
-      .login({
-         username: arg?.username,
-         password: arg?.password,
-      })
-      .then((data) => {
-         event.reply("login-reply", data);
-      })
-      .catch((error) => {
-         event.reply("login-reply", error);
-      });
-});
-      
-
-ipcMain.on('message', async (event, arg) => {
-  event.reply('message', `${arg} World!`)
-})
+ipcEventHandler();

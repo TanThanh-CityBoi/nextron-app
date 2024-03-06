@@ -1,19 +1,18 @@
 import { Fragment, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
+
+import { IPC_MESSAGE } from "@common/ipc-message";
 
 export default function Login() {
    const [user, setUser] = useState("none user");
 
    const hanleLogin = async () => {
-      window.ipc.send("login-send", {
+      window.ipc.send(IPC_MESSAGE.LOGIN_SEND, {
          username: "admin",
          password: "123123",
       });
-
-      window.ipc.on("login-reply", (arg: any) => {
-         console.log("🚀 ~ window.ipc.on ~ login-reply:", arg);
+      window.ipc.on(IPC_MESSAGE.LOGIN_REPLY, (arg: any) => {
          setUser(arg);
       });
    };

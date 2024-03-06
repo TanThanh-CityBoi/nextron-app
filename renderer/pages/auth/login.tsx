@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 import { IPC_MESSAGE } from "@common/ipc-message";
 
@@ -34,11 +35,15 @@ export default function Login() {
             </div>
          </div>
          <div className="my-5 w-full flex-wrap flex justify-center">
-            {/* <Link href="/home">
-               <a>Login to app</a>
-            </Link> */}
+            <button className="bg-primary-200 px-3" onClick={() => hanleLogin()}>
+               Login
+            </button>
+         </div>
 
-            <button onClick={() => hanleLogin()}>Login</button>
+         <div>
+            <Link href="/home">
+               <a>Go to home page</a>
+            </Link>
          </div>
 
          <div>{JSON.stringify(user || "none res")}</div>

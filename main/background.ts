@@ -1,6 +1,7 @@
 import path from 'path'
-import { app } from "electron";
+import { app, powerMonitor } from "electron";
 import serve from "electron-serve";
+import schedule from "node-schedule";
 
 import { createWindow } from "./helpers";
 import ipcEventHandler from "./ipc";
@@ -34,6 +35,20 @@ if (isProd) {
       await mainWindow.loadURL(`http://localhost:${port}/auth/login`);
       mainWindow.webContents.openDevTools();
    }
+   // Reload app
+   const scheduledJob = schedule.scheduleJob("*/10 * * * * *", () => {
+      mainWindow.reload();
+   });
+
+   powerMonitor.on("resume", () => {
+      console.log("resumed!");
+      scheduledJob.reschedule("*/2 * * * * *");
+   });
+
+   powerMonitor.on("suspend", () => {
+      console.log("suspended");
+      scheduledJob.cancel();
+   });
 })();
 
 app.on("window-all-closed", () => {

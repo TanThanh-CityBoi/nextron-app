@@ -28,6 +28,7 @@ if (isProd) {
    const mainWindow = createWindow("main", {
       width: 1000,
       height: 600,
+      autoHideMenuBar: true,
       webPreferences: {
          nodeIntegration: true,
          contextIsolation: true,
@@ -37,10 +38,10 @@ if (isProd) {
    });
 
    if (isProd) {
-      await mainWindow.loadURL("app://./auth/login");
+      await mainWindow.loadURL("app://./home");
    } else {
       const port = process.argv[2];
-      await mainWindow.loadURL(`http://localhost:${port}/auth/login`);
+      await mainWindow.loadURL(`http://localhost:${port}/home`);
       mainWindow.webContents.openDevTools();
    }
    // Reload app

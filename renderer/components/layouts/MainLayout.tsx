@@ -1,24 +1,17 @@
-import { useState } from "react";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
 import { Layout } from "antd";
 
-const MainLayout = ({ children }) => {
-   const [collapsed, setCollapsed] = useState(true);
+import Header from "./Header";
+import Footer from "./Footer";
 
+const MainLayout = ({ children }) => {
    return (
       <>
-         <Layout className="min-h-screen">
-            <Sidebar collapsed={collapsed}></Sidebar>
-            <Layout>
-               <Header
-                  collapsed={collapsed}
-                  setCollapsed={(val: boolean) => setCollapsed(val)}
-               ></Header>
-               <div className="h-full">
-                  <main>{children}</main>
-               </div>
-            </Layout>
+         <Layout className="h-screen bg-primary-50">
+            <Header></Header>
+
+            <main className="h-full">{children}</main>
+
+            <Footer></Footer>
          </Layout>
       </>
    );

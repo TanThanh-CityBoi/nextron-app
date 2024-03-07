@@ -43,9 +43,3 @@ p {
     @apply text-base md:text-lg;
   }
 }
-
-/* menu sidebar */
-
-ul li .ant-menu-submenu-title {
-    padding: 5px 22px !important;
-}

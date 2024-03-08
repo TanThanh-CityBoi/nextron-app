@@ -42,8 +42,7 @@
          ".env"
       ],
       "win": {
-         "target": "msi",
-         "icon": "resources/icon.ico"
+         "icon": "resources/app-icon.png"
       }
    }
 }

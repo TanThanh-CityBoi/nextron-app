@@ -43,3 +43,24 @@ p {
     @apply text-base md:text-lg;
   }
 }
+
+@layer utilities {
+  @variants responsive {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    .small-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .small-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #06b6d4;
+    }
+  }
+}

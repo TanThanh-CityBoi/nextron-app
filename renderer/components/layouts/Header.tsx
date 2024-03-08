@@ -6,8 +6,8 @@ import { useState } from "react";
 const Header = () => {
    const [lang, setLang] = useState("vi");
    return (
-      <div className="flex justify-between items-center h-28 p-6 ">
-         <div className="relative aspect-video px-2 h-16">
+      <div className="flex justify-between items-center py-12 px-6">
+         <div className="relative aspect-video px-2 h-20">
             <img
                className="absolute h-full w-full"
                src="/images/logo-2.png"

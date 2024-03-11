@@ -1,4 +1,4 @@
-import PrimaryButton from "../ui/button/PrimaryButton";
+import PrimaryButton from '../ui/button/PrimaryButton';
 
 const Cart = () => {
     const selectedItems = [{}];

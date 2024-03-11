@@ -14,8 +14,10 @@
         "build:mac": "nextron build --mac --x64",
         "build:linux": "nextron build --linux",
         "postinstall": "electron-builder install-app-deps && husky install",
-        "lint:check": "eslint .",
-        "lint:fix": "eslint --fix ."
+        "huskyinit": "npx husky add .husky/pre-commit \"yarn lint:staged\"",
+        "lint:staged": "lint-staged",
+        "lint": "eslint \"{main,renderer,common}/**/*.{js,jsx,ts,tsx}\" --fix",
+        "format": "prettier \"{main,renderer,common}/**/*.{js,jsx,ts,tsx}\" --write"
     },
     "dependencies": {
         "antd": "^5.15.0",
@@ -49,10 +51,8 @@
         "typescript": "^5.3.3"
     },
     "lint-staged": {
-        "*.ts": [
-            "npm run lint",
-            "npm run format",
-            "git add ."
+        "**/*.{ts,tsx}": [
+            "eslint --fix"
         ]
     },
     "build": {
@@ -62,5 +62,6 @@
         "win": {
             "icon": "resources/app-icon.png"
         }
-    }
+    },
+    "license": "ISC"
 }

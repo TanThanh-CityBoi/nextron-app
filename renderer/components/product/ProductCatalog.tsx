@@ -64,8 +64,13 @@ const ProductCatalog = () => {
                     </div>
                 </div>
                 <div className={`${collapsed ? 'col-span-2' : 'col-span-4'} relative py-2`}>
-                    <button className="bg-primary-600 w-full py-2 ps-4" onClick={() => setCollapsed(!collapsed)}>
-                        <h5 className="line-clamp-1 font-semibold text-white">Giỏ hàng(1 sản phẩm)</h5>
+                    <button
+                        className="bg-primary-600 w-full py-2 ps-4"
+                        onClick={() => setCollapsed(!collapsed)}
+                    >
+                        <h5 className="line-clamp-1 font-semibold text-white">
+                            Giỏ hàng(1 sản phẩm)
+                        </h5>
 
                         <span className="bg-primary-600 absolute -left-12 -top-1 h-16 w-16 rounded-full p-1">
                             <span className="flex h-full w-full items-center justify-center rounded-full bg-white">

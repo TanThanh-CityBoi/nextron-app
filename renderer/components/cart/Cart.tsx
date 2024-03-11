@@ -1,7 +1,7 @@
 import PrimaryButton from '../ui/button/PrimaryButton';
 
 const Cart = () => {
-    const selectedItems = [{}];
+    // const selectedItems = [{}];
 
     return (
         <div className="flex flex-col justify-between h-full">

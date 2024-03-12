@@ -1,7 +1,7 @@
-import userEventHandler from './user.ipc';
+import productEventHandler from './product.ipc';
 
 function ipcEventHandler() {
-    userEventHandler();
+    productEventHandler();
 }
 
 export default ipcEventHandler;

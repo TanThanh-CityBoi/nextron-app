@@ -1,6 +1,6 @@
 const IPC_MESSAGE = {
-    LOGIN_SEND: 'login-send',
-    LOGIN_REPLY: 'login-reply',
+    GET_LIST_PRODUCTS: 'get-list-products',
+    GET_LIST_PRODUCTS_REPLY: 'get-list-products-reply',
 };
 
 export { IPC_MESSAGE };

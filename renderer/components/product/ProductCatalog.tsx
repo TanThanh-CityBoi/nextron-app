@@ -25,7 +25,7 @@ const ProductCatalog = () => {
                 </div>
                 <div className={`${collapsed ? 'col-span-2' : 'col-span-4'} relative`}>
                     <button
-                        className="bg-primary-600 w-full py-2 ps-4"
+                        className="bg-primary-600 w-full py-2 ps-8"
                         onClick={() => setCollapsed(!collapsed)}
                     >
                         <h5 className="line-clamp-1 font-semibold text-white">
@@ -42,7 +42,7 @@ const ProductCatalog = () => {
             </div>
             <div className="grid h-[50vh] grid-cols-12">
                 <div
-                    className={`${collapsed ? 'col-span-12' : 'col-span-8'} small-scrollbar mt-4 overflow-x-scroll`}
+                    className={`${collapsed ? 'col-span-12' : 'col-span-8'} no-scrollbar mt-4 overflow-x-scroll`}
                 >
                     <div className="grid grid-cols-[repeat(auto-fill,minmax(min(11rem,100%),1fr))] gap-x-4 gap-y-6 px-4 pb-4">
                         {products.map((item, id) => {

@@ -1,17 +1,13 @@
-import { app, globalShortcut, powerMonitor } from 'electron';
+import { app } from 'electron';
 import serve from 'electron-serve';
-import schedule from 'node-schedule';
-import path from 'path';
 
-import { createWindow } from './helpers';
+import { createWindow, reloadSchedule } from '@main/helpers';
+import { windowConfig } from '@/main/helpers/window.config';
+import { envConfig } from '@/common/env.config';
 import ipcEventHandler from './ipc';
 
 import * as dotenv from 'dotenv';
-dotenv.config({
-    path: app.isPackaged
-        ? path.join(process.resourcesPath, '.env')
-        : path.resolve(process.cwd(), '.env'),
-});
+dotenv.config(envConfig);
 
 //
 const isProd = process.env.NODE_ENV === 'production';
@@ -24,21 +20,7 @@ if (isProd) {
 //
 (async () => {
     await app.whenReady();
-
-    const mainWindow = createWindow('main', {
-        fullscreen: true,
-        autoHideMenuBar: true,
-        alwaysOnTop: true,
-        titleBarStyle: 'hidden',
-        skipTaskbar: true,
-
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: true,
-
-            preload: path.join(__dirname, 'preload.js'),
-        },
-    });
+    const mainWindow = createWindow('main', windowConfig);
 
     if (isProd) {
         await mainWindow.loadURL('app://./home');
@@ -48,31 +30,11 @@ if (isProd) {
         mainWindow.webContents.openDevTools();
     }
     // Reload app
-    const scheduledJob = schedule.scheduleJob('0 1 * * *', () => {
-        mainWindow.reload();
-    });
-
-    powerMonitor.on('resume', () => {
-        console.log('resumed!');
-        scheduledJob.reschedule('0 1 * * *');
-    });
-
-    powerMonitor.on('suspend', () => {
-        console.log('suspended');
-        scheduledJob.cancel();
-    });
+    reloadSchedule(mainWindow);
 })();
 
 app.on('window-all-closed', () => {
     app.quit();
-});
-app.on('browser-window-focus', function () {
-    globalShortcut.registerAll(['F11'], () => {
-        console.log('Shortcut Disabled');
-    });
-});
-app.on('browser-window-blur', function () {
-    globalShortcut.unregisterAll();
 });
 
 ipcEventHandler();

@@ -11,7 +11,6 @@ const ChangePasswordModal = (props: {
 }) => {
     const [isShowPass, setShowPass] = useState(false);
     const [isShowNewPass, setShowNewPass] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const handleCancel = () => {
         props.setIsModalOpen(false);
@@ -22,21 +21,21 @@ const ChangePasswordModal = (props: {
             {props?.showButton}
             <Modal title={''} open={props.isModalOpen} footer={null}>
                 <div className="relative py-3">
-                    <form className={`${isLoading ? 'opacity-0' : ''}`}>
-                        <div className="w-full mb-6">
-                            <div className="relative w-full mb-6">
-                                <label htmlFor="oldPassword" className="font-semibold mb-1">
+                    <form className={``}>
+                        <div className="mb-6 w-full">
+                            <div className="relative mb-6 w-full">
+                                <label htmlFor="oldPassword" className="mb-1 font-semibold">
                                     Mật khẩu cũ{' '}
                                 </label>
                                 <input
                                     aria-label="input"
-                                    className="text-gray-500 border border-gray-300 rounded-md w-full px-3 py-2"
+                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-500"
                                     id="oldPassword"
                                     name="oldPassword"
                                 ></input>
 
                                 <button
-                                    className="absolute right-2 bottom-2"
+                                    className="absolute bottom-2 right-2"
                                     type="button"
                                     onClick={() => setShowPass(!isShowPass)}
                                 >
@@ -48,18 +47,18 @@ const ChangePasswordModal = (props: {
                                 </button>
                             </div>
 
-                            <div className="relative w-full mb-6">
-                                <label htmlFor="newPassword" className="font-semibold mb-1">
+                            <div className="relative mb-6 w-full">
+                                <label htmlFor="newPassword" className="mb-1 font-semibold">
                                     Mật khẩu mới{' '}
                                 </label>
                                 <input
                                     aria-label="input"
-                                    className="text-gray-500 border border-gray-300 rounded-md w-full px-3 py-2"
+                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-500"
                                     id="newPassword"
                                     name="newPassword"
                                 ></input>
                                 <button
-                                    className="absolute right-2 bottom-2"
+                                    className="absolute bottom-2 right-2"
                                     type="button"
                                     onClick={() => setShowNewPass(!isShowNewPass)}
                                 >
@@ -71,15 +70,15 @@ const ChangePasswordModal = (props: {
                                 </button>
                             </div>
 
-                            <div className="w-full mb-6">
-                                <label htmlFor="confirmPassword" className="font-semibold mb-1">
+                            <div className="mb-6 w-full">
+                                <label htmlFor="confirmPassword" className="mb-1 font-semibold">
                                     Nhập lại mật khẩu{' '}
                                 </label>
                                 <input
                                     aria-label="input"
                                     id="confirmPassword"
                                     type={`${isShowNewPass ? 'text' : 'password'}`}
-                                    className="text-gray-500 border border-gray-300 rounded-md w-full px-3 py-2"
+                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-500"
                                     name="confirmPassword"
                                 ></input>
                             </div>
@@ -89,7 +88,7 @@ const ChangePasswordModal = (props: {
                             <PrimaryButton
                                 type="submit"
                                 content="Cập nhật"
-                                icon={<AiOutlineKey className="text-xl me-2" />}
+                                icon={<AiOutlineKey className="me-2 text-xl" />}
                             />
                             <SecondaryButton content="Hủy" type="button" onClick={handleCancel} />
                         </div>

@@ -1,4 +1,4 @@
-import { app, powerMonitor } from 'electron';
+import { app, globalShortcut, powerMonitor } from 'electron';
 import serve from 'electron-serve';
 import schedule from 'node-schedule';
 import path from 'path';
@@ -26,9 +26,12 @@ if (isProd) {
     await app.whenReady();
 
     const mainWindow = createWindow('main', {
-        width: 600,
-        height: 1000,
+        fullscreen: true,
         autoHideMenuBar: true,
+        alwaysOnTop: true,
+        titleBarStyle: 'hidden',
+        skipTaskbar: true,
+
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
@@ -62,6 +65,14 @@ if (isProd) {
 
 app.on('window-all-closed', () => {
     app.quit();
+});
+app.on('browser-window-focus', function () {
+    globalShortcut.registerAll(['F11'], () => {
+        console.log('Shortcut Disabled');
+    });
+});
+app.on('browser-window-blur', function () {
+    globalShortcut.unregisterAll();
 });
 
 ipcEventHandler();

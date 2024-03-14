@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { i18n } = require('./i18n.config');
+
 module.exports = {
     trailingSlash: true,
     images: {
@@ -7,4 +9,5 @@ module.exports = {
     webpack: (config) => {
         return config;
     },
+    i18n,
 };

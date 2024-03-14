@@ -1,6 +1,11 @@
+import { envConfig } from '@/common/env.config';
 import path from 'path';
+import * as dotenv from 'dotenv';
+dotenv.config(envConfig);
 
-export const windowConfig: Electron.BrowserWindowConstructorOptions = {
+const isProd = process.env.NODE_ENV === 'production';
+
+const ProdConfig: Electron.BrowserWindowConstructorOptions = {
     fullscreen: true,
     alwaysOnTop: true,
     titleBarStyle: 'hidden',
@@ -11,3 +16,13 @@ export const windowConfig: Electron.BrowserWindowConstructorOptions = {
         preload: path.join(__dirname, 'preload.js'),
     },
 };
+
+const DevConfig: Electron.BrowserWindowConstructorOptions = {
+    webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: true,
+        preload: path.join(__dirname, 'preload.js'),
+    },
+};
+
+export const windowConfig = isProd ? ProdConfig : DevConfig;

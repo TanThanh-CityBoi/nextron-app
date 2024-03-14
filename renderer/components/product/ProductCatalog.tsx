@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { FaCartShopping } from 'react-icons/fa6';
 import { IPC_MESSAGE } from '@common/ipc.message';
+import useTrans from '@renderer/components/hooks/useTrans';
 
 import Cart from '../cart/Cart';
 import ProductCard from './ProductCard';
 
 const ProductCatalog = () => {
+    const trans = useTrans();
+
     const [collapsed, setCollapsed] = useState(false);
     const [products, setProducts] = useState([]);
+
     useEffect(() => {
         window.ipc.send(IPC_MESSAGE.GET_LIST_PRODUCTS, {});
         window.ipc.on(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, (arg: any) => {
@@ -20,7 +24,7 @@ const ProductCatalog = () => {
             <div className="grid grid-cols-12">
                 <div className={`${collapsed ? 'col-span-10' : 'col-span-8'}`}>
                     <div className="bg-primary-600 line-clamp-1 w-max rounded-e-full px-4 py-2 font-semibold text-gray-100">
-                        <h5> Danh sách sản phẩm</h5>
+                        <h5>{trans.product_list.title}</h5>
                     </div>
                 </div>
                 <div className={`${collapsed ? 'col-span-2' : 'col-span-4'} relative`}>
@@ -29,7 +33,7 @@ const ProductCatalog = () => {
                         onClick={() => setCollapsed(!collapsed)}
                     >
                         <h5 className="line-clamp-1 font-semibold text-white">
-                            Giỏ hàng(1 sản phẩm)
+                            {trans.cart.title}(1 {trans.cart.sub_title})
                         </h5>
 
                         <span className="bg-primary-600 absolute -left-8 -top-2.5 h-16 w-16 rounded-full p-1">

@@ -1,3 +1,5 @@
+import { IPC_MESSAGE } from '@/common/ipc.message';
+
 type ProductProps = {
     name: string;
     price: number;
@@ -9,7 +11,7 @@ type ProductProps = {
 
 const DiscountTag = (props: { discount: number }) => {
     return (
-        <div className="absolute left-2 top-2 h-14 w-14 flex flex-col justify-center rounded-tl-lg bg-[#ff1f1f]">
+        <div className="absolute left-2 top-2 flex h-14 w-14 flex-col justify-center rounded-tl-lg bg-[#ff1f1f]">
             <div>
                 <p className="text-center font-bold text-[#fbbf24]">KM</p>
             </div>
@@ -21,8 +23,15 @@ const DiscountTag = (props: { discount: number }) => {
 };
 
 const ProductCard = (props: ProductProps) => {
+    const handleAddToCart = (item) => {
+        window.ipc.send(IPC_MESSAGE.ADD_TO_CART, item);
+    };
+
     return (
-        <div className="relative rounded-xl bg-gray-100  p-2 shadow-lg">
+        <div
+            className="relative rounded-xl bg-gray-100  p-2 shadow-lg"
+            onClick={() => handleAddToCart({ ...props })}
+        >
             <div className="relative aspect-square h-full w-full rounded-t-xl">
                 <img
                     className="absolute h-full w-full rounded-t-xl object-cover"

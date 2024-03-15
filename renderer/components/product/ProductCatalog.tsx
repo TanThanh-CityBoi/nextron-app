@@ -53,9 +53,11 @@ const ProductCatalog = () => {
                             return (
                                 <div className="" key={id}>
                                     <ProductCard
+                                        id={item.id}
                                         thumbnail={item.thumbnail}
                                         price={item.price}
-                                        name={item.name}
+                                        name_en={item.name_en}
+                                        name_vi={item.name_vi}
                                         sellPrice={item.sellPrice}
                                         amount={item.amount}
                                         discount={item.discount}

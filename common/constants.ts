@@ -1,6 +1,6 @@
-const LANGS = {
-    VI: 'vi',
-    EN: 'en',
+const LOCALES = {
+    vi: 'vi',
+    en: 'en',
 };
 
-export { LANGS };
+export { LOCALES };

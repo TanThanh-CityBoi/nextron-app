@@ -1,7 +1,7 @@
 import { app } from 'electron';
 import serve from 'electron-serve';
 
-import { LOCAL_STORAGE, createWindow, reloadSchedule } from '@main/helpers';
+import { LocalStorage, createWindow, reloadSchedule } from '@main/helpers';
 import { windowConfig } from '@/main/helpers/window.config';
 import { envConfig } from '@/common/env.config';
 import ipcEventHandler from './ipc';
@@ -34,7 +34,7 @@ if (isProd) {
 })();
 
 app.on('window-all-closed', () => {
-    LOCAL_STORAGE.clear();
+    LocalStorage.clear();
     app.quit();
 });
 

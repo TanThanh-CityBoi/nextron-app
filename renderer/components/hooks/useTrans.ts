@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
-import { LANGS } from '@/common/constants';
+import { LOCALES } from '@/common/constants';
 import { vi, en } from '@renderer/public/lang';
 
 const useTrans = () => {
     const { locale } = useRouter();
-    const trans = locale === LANGS.VI ? vi : en;
+    const trans = locale === LOCALES.vi ? vi : en;
     return trans;
 };
 

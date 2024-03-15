@@ -1,7 +1,10 @@
 import { IPC_MESSAGE } from '@/common/ipc.message';
+import { useRouter } from 'next/router';
 
 type ProductProps = {
-    name: string;
+    id: number;
+    name_en: string;
+    name_vi: string;
     price: number;
     sellPrice: number;
     thumbnail: string;
@@ -23,6 +26,9 @@ const DiscountTag = (props: { discount: number }) => {
 };
 
 const ProductCard = (props: ProductProps) => {
+    const router = useRouter();
+    const lang = router.locale;
+
     const handleAddToCart = (item) => {
         window.ipc.send(IPC_MESSAGE.ADD_TO_CART, item);
     };
@@ -40,7 +46,7 @@ const ProductCard = (props: ProductProps) => {
                 ></img>
             </div>
             <div className="py-2">
-                <p className="text-center font-semibold">{props.name}</p>
+                <p className="text-center font-semibold">{props?.[`name_${lang}`]}</p>
                 <p className="text-center font-semibold">{props.sellPrice} đ</p>
                 <p className="text-center line-through">{props.price} đ</p>
             </div>

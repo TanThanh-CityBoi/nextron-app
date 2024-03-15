@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
-const { i18n } = require('./i18n.config');
+const nextTranslate = require('next-translate-plugin');
 
-module.exports = {
+module.exports = nextTranslate({
     trailingSlash: true,
     images: {
         unoptimized: true,
@@ -9,5 +9,11 @@ module.exports = {
     webpack: (config) => {
         return config;
     },
-    i18n,
-};
+    i18nConfig: {
+        locales: ['en', 'vi'],
+        defaultLocale: 'vi',
+        pages: {
+            '*': ['common', 'home'],
+        },
+    },
+});

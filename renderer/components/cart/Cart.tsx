@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import PrimaryButton from '../ui/button/PrimaryButton';
 import CartItem from './CartItem';
-import { IPC_MESSAGE } from '@/common/ipc.message';
-import { CartType } from '@common/type';
+import { IPC_MESSAGE } from '@/common/ipc-message';
+import { CartType } from '@/common/type';
 
 const Cart = () => {
     const [cart, setCart] = useState<CartType>({

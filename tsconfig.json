@@ -14,13 +14,7 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
-        "paths": {
-            "@/*": ["./*"],
-            "@common/*": ["./common/*"],
-            "@main/*": ["./main/*"],
-            "@renderer/*": ["./renderer/*"],
-            "@resources/*": ["./resources/*"]
-        }
+        "paths": { "@/*": ["./*"] }
     },
     "exclude": ["node_modules", "renderer/next.config.js", "app", "dist"]
 }

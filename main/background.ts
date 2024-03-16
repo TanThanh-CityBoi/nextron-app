@@ -1,26 +1,21 @@
 import { app } from 'electron';
-import serve from 'electron-serve';
 
-import { LocalStorage, createWindow, reloadSchedule } from '@main/helpers';
-import { windowConfig } from '@/main/helpers/window.config';
-import { envConfig } from '@/common/env.config';
-import ipcEventHandler from './ipc';
-
+import { appEventHandler, createWindow, reloadSchedule, setAppPath } from '@/main/helpers';
+import { WINDOW_CONFIG } from '@/main/configs';
+import { ENV_CONFIG } from '@/common/env.config';
+import ipcEventHandler from '@/main/ipc';
+//
 import * as dotenv from 'dotenv';
-dotenv.config(envConfig);
-
+dotenv.config(ENV_CONFIG);
 //
 const isProd = process.env.NODE_ENV === 'production';
-if (isProd) {
-    serve({ directory: 'app' });
-} else {
-    app.setPath('userData', `${app.getPath('userData')} (development)`);
-}
+setAppPath(isProd);
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
-//
+// create app
 (async () => {
     await app.whenReady();
-    const mainWindow = createWindow('main', windowConfig);
+    const mainWindow = createWindow('main', WINDOW_CONFIG);
 
     if (isProd) {
         await mainWindow.loadURL('app://./home');
@@ -33,9 +28,5 @@ if (isProd) {
     reloadSchedule(mainWindow);
 })();
 
-app.on('window-all-closed', () => {
-    LocalStorage.clear();
-    app.quit();
-});
-
+appEventHandler();
 ipcEventHandler();

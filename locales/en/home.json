@@ -1,3 +1,9 @@
 {
-    "title": "home-title-en"
+    "title": "Nextron app",
+    "cart": {
+        "title": "Cart ({{amount}} items)"
+    },
+    "product_list": {
+        "title": "Product List"
+    }
 }

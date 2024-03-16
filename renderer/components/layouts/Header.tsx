@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { LOCALES } from '@common/constants';
+import { useTranslation } from 'react-i18next';
+
+import { LOCALES } from '@/common/constants';
 
 const Header = () => {
-    const router = useRouter();
-    const [lang, setLang] = useState(router.locale || LOCALES.vi);
+    const { i18n } = useTranslation();
+    const [lang, setLang] = useState(i18n.language || LOCALES.vi);
 
     const changeLang = (lang: string) => {
         setLang(lang);
-        router.push(router.pathname, router.pathname, { locale: lang });
+        i18n.changeLanguage(lang);
     };
 
     return (

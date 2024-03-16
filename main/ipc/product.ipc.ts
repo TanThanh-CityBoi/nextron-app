@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron';
-import { IPC_MESSAGE } from '@/common/ipc.message';
-import { LocalStorage } from '../helpers';
-import { products } from '@/common/mock-data';
+import { IPC_MESSAGE } from '@/common/ipc-message';
+import { LocalStorage } from '@/main/helpers';
+import { products } from '@/mock-data';
 
 function productEventHandler() {
     ipcMain.on(IPC_MESSAGE.GET_LIST_PRODUCTS, async (event) => {

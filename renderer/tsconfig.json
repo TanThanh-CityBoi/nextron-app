@@ -3,12 +3,6 @@
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"],
     "compilerOptions": {
-        "paths": {
-            "@/*": ["./../*"],
-            "@common/*": ["./../common/*"],
-            "@main/*": ["./../main/*"],
-            "@renderer/*": ["./../renderer/*"],
-            "@resources/*": ["./../resources/*"]
-        }
+        "paths": { "@/*": ["./../*"] }
     }
 }

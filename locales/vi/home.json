@@ -1,3 +1,9 @@
 {
-    "title": "home-title-vi"
+    "title": "Nextron app",
+    "cart": {
+        "title": "Giỏ hàng ({{amount}} sản phẩm)"
+    },
+    "product_list": {
+        "title": "Danh sách sản phẩm"
+    }
 }

@@ -1,5 +1,5 @@
-import { IPC_MESSAGE } from '@/common/ipc.message';
-import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { IPC_MESSAGE } from '@/common/ipc-message';
 
 type ProductProps = {
     id: number;
@@ -26,8 +26,8 @@ const DiscountTag = (props: { discount: number }) => {
 };
 
 const ProductCard = (props: ProductProps) => {
-    const router = useRouter();
-    const lang = router.locale;
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
 
     const handleAddToCart = (item) => {
         window.ipc.send(IPC_MESSAGE.ADD_TO_CART, item);

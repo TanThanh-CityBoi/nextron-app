@@ -1,9 +1,9 @@
 import { FaPlus } from 'react-icons/fa';
 import { FaMinus } from 'react-icons/fa';
-
 import { TiDelete } from 'react-icons/ti';
-import Image from 'next/image';
-import { IPC_MESSAGE } from '@/common/ipc.message';
+import { useTranslation } from 'react-i18next';
+
+import { IPC_MESSAGE } from '@/common/ipc-message';
 
 const CartItem = (props: {
     id: number;
@@ -13,6 +13,9 @@ const CartItem = (props: {
     amount: number;
     thumbnail: string;
 }) => {
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
+
     const addItem = (id) => {
         window.ipc.send(IPC_MESSAGE.ADD_TO_CART, { id });
     };
@@ -22,19 +25,17 @@ const CartItem = (props: {
     };
 
     return (
-        <div className="relative my-3 flex gap-x-4 rounded-xl border border-gray-200 bg-white px-4 py-1 shadow-md">
-            <div className="flex items-center justify-center">
-                <Image
-                    className="rounded-full object-cover"
+        <div className="relative my-3 flex items-center gap-x-4 rounded-xl border border-gray-200 bg-white px-4 py-1 shadow-md">
+            <div className="relative aspect-square h-20 w-20">
+                <img
+                    className="absolute h-full w-full rounded-full object-cover"
                     alt="thumbnail.img"
                     src={props.thumbnail}
-                    height={70}
-                    width={70}
-                ></Image>
+                ></img>
             </div>
             <div>
                 <div>
-                    <h5 className="line-clamp-1 font-semibold">{props.name_en}</h5>
+                    <h5 className="line-clamp-1 font-semibold">{props?.[`name_${lang}`]}</h5>
                 </div>
                 <div className="text-lg font-semibold">Đơn giá: {props.price} đ</div>
                 <div className="flex gap-x-4 py-2 font-semibold text-gray-400">

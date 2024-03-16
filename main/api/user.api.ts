@@ -1,4 +1,4 @@
-import { axiosInstance } from '@main/helpers/axios.helper';
+import { axiosInstance } from '@/main/helpers';
 
 export const userAPI = {
     login,

@@ -1,9 +1,9 @@
-import { sectors } from '@common/mock-data';
-import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { sectors } from '@/mock-data';
 
 const Sectors = () => {
-    const router = useRouter();
-    const lang = router.locale;
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
 
     return (
         <div className="flex gap-5 p-4">

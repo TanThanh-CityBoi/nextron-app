@@ -1,2 +1,9 @@
-export * as common from './common.js';
-export * as home from './home.js';
+import home from './home.json';
+import common from './common.json';
+
+const vi = {
+    home,
+    common,
+};
+
+export default vi;

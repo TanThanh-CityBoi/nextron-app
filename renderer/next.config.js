@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextTranslate = require('next-translate-plugin');
 
-module.exports = nextTranslate({
+module.exports = {
     trailingSlash: true,
     images: {
         unoptimized: true,
@@ -9,11 +8,4 @@ module.exports = nextTranslate({
     webpack: (config) => {
         return config;
     },
-    i18nConfig: {
-        locales: ['en', 'vi'],
-        defaultLocale: 'vi',
-        pages: {
-            '*': ['common', 'home'],
-        },
-    },
-});
+};

@@ -1,7 +1,7 @@
 import schedule from 'node-schedule';
 import { powerMonitor } from 'electron';
 
-export const reloadSchedule = (mainWindow) => {
+const reloadSchedule = (mainWindow) => {
     const scheduledJob = schedule.scheduleJob('0 1 * * *', () => {
         mainWindow.reload();
     });
@@ -16,3 +16,5 @@ export const reloadSchedule = (mainWindow) => {
         scheduledJob.cancel();
     });
 };
+
+export { reloadSchedule };

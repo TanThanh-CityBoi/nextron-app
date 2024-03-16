@@ -3,8 +3,9 @@ import PrimaryButton from '../ui/button/PrimaryButton';
 import CartItem from './CartItem';
 import { IPC_MESSAGE } from '@/common/ipc-message';
 import { CartType } from '@/common/type';
+import { PURCHASE_STATUS } from '@/common/constants';
 
-const Cart = () => {
+const Cart = (props: { setPurchaseStatus: Function }) => {
     const [cart, setCart] = useState<CartType>({
         total: 0,
         item_numbers: 0,
@@ -12,6 +13,10 @@ const Cart = () => {
     });
 
     const [cartItems, setCartItems] = useState([]);
+
+    const handlePayment = () => {
+        props.setPurchaseStatus(PURCHASE_STATUS.CONFIRM_PURCHASE);
+    };
 
     useEffect(() => {
         window.ipc.send(IPC_MESSAGE.GET_CART_ITEMS, {});
@@ -44,7 +49,10 @@ const Cart = () => {
                     <h5 className="font-semibold">{cart.total} đ</h5>
                 </div>
                 <div className="flex justify-end">
-                    <PrimaryButton content="Thanh toán"></PrimaryButton>
+                    <PrimaryButton
+                        onClick={() => handlePayment()}
+                        content="Thanh toán"
+                    ></PrimaryButton>
                 </div>
             </div>
         </div>

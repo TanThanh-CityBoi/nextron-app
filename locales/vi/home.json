@@ -1,7 +1,9 @@
 {
     "title": "Nextron app",
     "cart": {
-        "title": "Giỏ hàng ({{amount}} sản phẩm)"
+        "order_title": "Giỏ hàng ({{amount}} sản phẩm)",
+        "confirm_title": "Xác nhận thanh toán",
+        "payment_title": "Thanh toán"
     },
     "product_list": {
         "title": "Danh sách sản phẩm"

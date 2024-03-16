@@ -7,7 +7,7 @@ const products = [
         sellPrice: 9000,
         thumbnail:
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
-        amount: 10,
+        amount: 4,
         discount: 30,
     },
     {
@@ -17,7 +17,7 @@ const products = [
         price: 10000,
         sellPrice: 9000,
         thumbnail: 'https://sonhawater.com/wp-content/uploads/2020/01/nuoc-aquafina.jpg',
-        amount: 10,
+        amount: 7,
         discount: 30,
     },
     {

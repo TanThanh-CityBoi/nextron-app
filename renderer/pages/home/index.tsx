@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import MainLayout from '../../components/layouts/MainLayout';
 import Sectors from '../../components/sectors/Sectors';
-import ProductCatalog from '../../components/product/ProductCatalog';
+import ProductCartWrapper from '../../components/product/ProductCartWrapper';
 
 function HomePage() {
     return (
@@ -13,7 +13,7 @@ function HomePage() {
             </Head>
             <div className="">
                 <Sectors></Sectors>
-                <ProductCatalog></ProductCatalog>
+                <ProductCartWrapper></ProductCartWrapper>
             </div>
         </Fragment>
     );

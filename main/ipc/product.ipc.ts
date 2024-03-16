@@ -2,6 +2,7 @@ import { ipcMain } from 'electron';
 import { IPC_MESSAGE } from '@/common/ipc-message';
 import { LocalStorage } from '@/main/helpers';
 import { products } from '@/mock-data';
+import { MAX_CART_ITEMS } from '@/common/constants';
 
 function productEventHandler() {
     ipcMain.on(IPC_MESSAGE.GET_LIST_PRODUCTS, async (event) => {
@@ -15,6 +16,9 @@ function productEventHandler() {
 
     ipcMain.on(IPC_MESSAGE.ADD_TO_CART, async (event, arg) => {
         const cart = LocalStorage.getCart();
+        if (cart.item_numbers === MAX_CART_ITEMS) {
+            return;
+        }
         let localProducts = LocalStorage.getProducts();
 
         if (!localProducts || !localProducts?.length) {
@@ -25,6 +29,10 @@ function productEventHandler() {
         const existedId = cart.items.findIndex((item) => item.id === arg.id);
         const existedIdProducts = localProducts.findIndex((item) => item.id === arg.id);
         if (existedId !== -1 && existedIdProducts !== -1) {
+            if (localProducts?.[existedIdProducts].amount < 1) {
+                return;
+            }
+
             const newItems = {
                 id: arg.id,
                 amount: cart.items?.[existedId].amount + 1,

@@ -2,8 +2,8 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 
 import MainLayout from '../../components/layouts/MainLayout';
-import Sectors from '../../components/sectors/Sectors';
 import ProductCartWrapper from '../../components/product/ProductCartWrapper';
+import Sectors from '../../components/sectors/Sectors';
 
 function HomePage() {
     return (

@@ -20,4 +20,5 @@ export type ProductType = {
     amount: number;
     thumbnail: string;
     discount?: number;
+    categories?: Array<number>;
 };

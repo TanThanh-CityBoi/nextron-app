@@ -9,6 +9,7 @@ const products = [
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
         amount: 4,
         discount: 30,
+        categories: [3],
     },
     {
         id: 2,
@@ -19,6 +20,7 @@ const products = [
         thumbnail: 'https://sonhawater.com/wp-content/uploads/2020/01/nuoc-aquafina.jpg',
         amount: 7,
         discount: 30,
+        categories: [1],
     },
     {
         id: 3,
@@ -30,6 +32,7 @@ const products = [
             'https://cafebiz.cafebizcdn.vn/zoom/700_438/2016/coca-cola-commercial-photography-1463360698380-crop-1463360708561.jpg',
         amount: 10,
         discount: 30,
+        categories: [2],
     },
     {
         id: 4,
@@ -41,6 +44,7 @@ const products = [
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
         amount: 10,
         discount: 30,
+        categories: [2, 3],
     },
     {
         id: 5,
@@ -52,6 +56,7 @@ const products = [
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
         amount: 10,
         discount: 30,
+        categories: [2, 3],
     },
     {
         id: 6,
@@ -63,6 +68,7 @@ const products = [
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
         amount: 10,
         discount: 30,
+        categories: [2, 3],
     },
     {
         id: 7,
@@ -74,6 +80,7 @@ const products = [
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
         amount: 10,
         discount: 30,
+        categories: [2, 3],
     },
     {
         id: 8,
@@ -85,6 +92,7 @@ const products = [
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
         amount: 10,
         discount: 30,
+        categories: [2, 3],
     },
 ];
 

@@ -1,15 +1,27 @@
 import { ipcMain } from 'electron';
 import { IPC_MESSAGE } from '@/common/ipc-message';
 import { LocalStorage } from '@/main/helpers';
-import { products } from '@/mock-data';
+import { products as productList } from '@/mock-data';
 import { MAX_CART_ITEMS, PURCHASE_STATUS } from '@/common/constants';
+
+const filterProduct = (products, categories) => {
+    if (!categories || !categories?.length) return products;
+    const productsFilter = products.filter((pro) => {
+        let isValid = false;
+        categories.forEach((c) => {
+            if (pro?.categories?.includes(c)) isValid = true;
+        });
+        return isValid;
+    });
+    return productsFilter;
+};
 
 function productEventHandler() {
     ipcMain.on(IPC_MESSAGE.GET_LIST_PRODUCTS, async (event) => {
         let currentProducts = LocalStorage.getProducts();
         if (!currentProducts || !currentProducts?.length) {
-            currentProducts = products;
-            LocalStorage.setProducts(products);
+            currentProducts = productList;
+            LocalStorage.setProducts(productList);
         }
         event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, currentProducts);
     });
@@ -19,6 +31,8 @@ function productEventHandler() {
         if (purchageStatus && purchageStatus !== PURCHASE_STATUS.ORDER) {
             return;
         }
+        //
+        const categories = LocalStorage.get('filter_product_categories') || [];
         //
         const cart = LocalStorage.getCart();
         if (cart.item_numbers === MAX_CART_ITEMS) {
@@ -30,8 +44,8 @@ function productEventHandler() {
         let localProducts = LocalStorage.getProducts();
 
         if (!localProducts || !localProducts?.length) {
-            localProducts = products;
-            LocalStorage.setProducts(products);
+            localProducts = productList;
+            LocalStorage.setProducts(productList);
         }
 
         const existedId = cart.items.findIndex((item) => item.id === arg.id);
@@ -61,7 +75,8 @@ function productEventHandler() {
             LocalStorage.setProducts(localProducts);
 
             event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
-            event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, localProducts);
+            const productFilter = filterProduct(localProducts, categories);
+            event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, productFilter);
             return;
         }
 
@@ -86,7 +101,8 @@ function productEventHandler() {
         LocalStorage.setProducts(localProducts);
 
         event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
-        event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, localProducts);
+        const productFilter = filterProduct(localProducts, categories);
+        event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, productFilter);
     });
 
     ipcMain.on(IPC_MESSAGE.REMOVE_CART_ITEM, async (event, arg) => {
@@ -95,12 +111,14 @@ function productEventHandler() {
             return;
         }
         //
+        const categories = LocalStorage.get('filter_product_categories') || [];
+        //
         const cart = LocalStorage.getCart();
         let localProducts = LocalStorage.getProducts();
 
         if (!localProducts || !localProducts?.length) {
-            localProducts = products;
-            LocalStorage.setProducts(products);
+            localProducts = productList;
+            LocalStorage.setProducts(productList);
         }
 
         const existedId = cart.items.findIndex((item) => item.id === arg.id);
@@ -123,7 +141,8 @@ function productEventHandler() {
             LocalStorage.setProducts(localProducts);
 
             event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
-            event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, localProducts);
+            const productFilter = filterProduct(localProducts, categories);
+            event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, productFilter);
             return;
         }
 
@@ -137,6 +156,22 @@ function productEventHandler() {
 
     ipcMain.on(IPC_MESSAGE.UPDATE_PURCHAGE_STATUS, async (event, arg) => {
         LocalStorage.set('purchage_status', arg?.status || PURCHASE_STATUS.ORDER);
+    });
+
+    ipcMain.on(IPC_MESSAGE.FILTER_PRODUCT_CATEGORY, async (event, arg) => {
+        let categories: Array<number> = (LocalStorage.get('filter_product_categories') ||
+            []) as Array<number>;
+        if (categories.includes(arg.cateId)) {
+            categories = categories.filter((val) => val !== arg.cateId);
+        } else {
+            categories.push(arg.cateId);
+        }
+        LocalStorage.set('filter_product_categories', categories);
+
+        const products = LocalStorage.getProducts() || productList;
+        const productFilter = filterProduct(products, categories);
+        event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, productFilter);
+        event.reply(IPC_MESSAGE.FILTER_PRODUCT_CATEGORY_REPLY, { categories });
     });
 }
 

@@ -1,9 +1,9 @@
-import appEventHandler from './app.ipc';
+import appIpcEventHandler from './app.ipc';
 import productEventHandler from './product.ipc';
 
 function ipcEventHandler() {
     productEventHandler();
-    appEventHandler();
+    appIpcEventHandler();
 }
 
 export default ipcEventHandler;

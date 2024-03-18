@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron';
 import { IPC_MESSAGE } from '@/common/ipc-message';
 
-function appEventHandler() {
+function appIpcEventHandler() {
     ipcMain.on(
         IPC_MESSAGE.CREATE_MODAL,
         async (
@@ -16,4 +16,4 @@ function appEventHandler() {
     );
 }
 
-export default appEventHandler;
+export default appIpcEventHandler;

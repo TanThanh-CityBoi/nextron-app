@@ -4,6 +4,7 @@ import CartItem from './CartItem';
 import { IPC_MESSAGE } from '@/common/ipc-message';
 import { CartType } from '@/common/type';
 import { PURCHASE_STATUS } from '@/common/constants';
+import { useTranslation } from 'react-i18next';
 
 const Cart = (props: { setPurchaseStatus: Function }) => {
     const [cart, setCart] = useState<CartType>({
@@ -12,9 +13,22 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
         items: [],
     });
 
+    const homeT = useTranslation('home');
+    const commonT = useTranslation('common');
+
     const [cartItems, setCartItems] = useState([]);
 
     const handlePayment = () => {
+        if (cart.item_numbers < 1) {
+            window.ipc.send(IPC_MESSAGE.CREATE_MODAL, {
+                ipc_message: IPC_MESSAGE.NOTIFICATION_MODEL_SHOW,
+                sub: {
+                    message_key: 'message.empty_cart',
+                    button_key: 'button.close_title',
+                },
+            });
+            return;
+        }
         props.setPurchaseStatus(PURCHASE_STATUS.CONFIRM_PURCHASE);
     };
 
@@ -45,13 +59,14 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
             </div>
             <div className="p-4">
                 <div className="mb-3 flex justify-between">
-                    <h5 className="font-semibold">Tổng cộng</h5>
+                    <h5 className="font-semibold">{homeT.t('cart.cart_total')}:</h5>
                     <h5 className="font-semibold">{cart.total} đ</h5>
                 </div>
                 <div className="flex justify-end">
                     <PrimaryButton
                         onClick={() => handlePayment()}
-                        content="Thanh toán"
+                        content={commonT.t('cart.btn_payment')}
+                        className="min-w-40 px-8 py-3 font-semibold"
                     ></PrimaryButton>
                 </div>
             </div>

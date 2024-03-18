@@ -1,3 +1,22 @@
 {
-    "title": "title-vi"
+    "title": "title-vi",
+    "cart": {
+        "btn_payment": "Thanh toán"
+    },
+    "modal": {
+        "base_modal": {
+            "toggle_button_content": "Mở modal",
+            "modal_title": "Tiêu đề",
+            "modal_content": "Nội dung",
+            "cancel_button": "Hủy",
+            "confirm_button": "Xác Nhận"
+        }
+    },
+    "message": {
+        "max_cart_items": "Bạn chỉ có thể chọn tối đa 5 sản phẩm",
+        "empty_cart": "Giỏ hàng trống"
+    },
+    "button": {
+        "close_title": "Đóng"
+    }
 }

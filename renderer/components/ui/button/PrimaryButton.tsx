@@ -1,5 +1,4 @@
 type SubProps = {
-    fontSize?: string;
     background?: string;
     icon?: React.ReactNode;
     content?: string;
@@ -8,7 +7,6 @@ type SubProps = {
 const PrimaryButton = ({
     className,
     background,
-    fontSize,
     icon,
     content,
     ...props
@@ -17,11 +15,10 @@ const PrimaryButton = ({
         <>
             <button
                 className={`flex items-center justify-center 
-                rounded-lg leading-6 text-white font-normal
-                whitespace-nowrap hover:opacity-70 px-4 py-2
+                whitespace-nowrap rounded-lg px-4 py-2
+                font-normal leading-6 text-white hover:opacity-70
             ${className} 
-            ${background || 'bg-gradient-to-r from-primary-500 to-primary-800'}
-            ${fontSize || 'lg:text-base text-sm'}
+            ${background || 'from-primary-500 to-primary-800 bg-gradient-to-r'}
             `}
                 {...props}
             >

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import Cart from '../cart/Cart';
 import { IPC_MESSAGE } from '@/common/ipc-message';
-import { CartType } from '@/common/type';
-import ProductCatalog from './ProductCatalog';
-import ProductCartHeader from './ProductCartHeader';
-import Payment from '../payment/Payment';
 import { PURCHASE_STATUS } from '@/common/constants';
+import { CartType } from '@/common/type';
 import ConfirmPurchase from '../payment/ConfirmPurchase';
+import ProductCartHeader from './ProductCartHeader';
+import ProductCatalog from './ProductCatalog';
+import Payment from '../payment/Payment';
+import Cart from '../cart/Cart';
 
 const ProductCartWrapper = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -20,15 +20,20 @@ const ProductCartWrapper = () => {
         total: 0,
     });
 
+    const changePurchaseStatus = (status: string) => {
+        window.ipc.send(IPC_MESSAGE.UPDATE_PURCHAGE_STATUS, { status });
+        setPurchaseStatus(status);
+    };
+
     const statusMapping = {
-        ORDER: <Cart setPurchaseStatus={setPurchaseStatus}></Cart>,
+        ORDER: <Cart setPurchaseStatus={changePurchaseStatus}></Cart>,
         CONFIRM_PURCHASE: (
-            <ConfirmPurchase cart={cart} setPurchaseStatus={setPurchaseStatus}></ConfirmPurchase>
+            <ConfirmPurchase cart={cart} setPurchaseStatus={changePurchaseStatus}></ConfirmPurchase>
         ),
         PAYMENT: <Payment></Payment>,
     };
     const getStatusComponent = (key: string) => {
-        return statusMapping?.[key] || <Cart setPurchaseStatus={setPurchaseStatus}></Cart>;
+        return statusMapping?.[key] || <Cart setPurchaseStatus={changePurchaseStatus}></Cart>;
     };
 
     useEffect(() => {
@@ -47,7 +52,7 @@ const ProductCartWrapper = () => {
                 setCollapsed={setCollapsed}
                 collapsed={collapsed}
                 purchaseStatus={purchaseStatus}
-                setPurchaseStatus={setPurchaseStatus}
+                setPurchaseStatus={changePurchaseStatus}
                 cart={cart}
             ></ProductCartHeader>
 

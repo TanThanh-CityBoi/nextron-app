@@ -2,7 +2,7 @@ import { ipcMain } from 'electron';
 import { IPC_MESSAGE } from '@/common/ipc-message';
 import { LocalStorage } from '@/main/helpers';
 import { products } from '@/mock-data';
-import { MAX_CART_ITEMS } from '@/common/constants';
+import { MAX_CART_ITEMS, PURCHASE_STATUS } from '@/common/constants';
 
 function productEventHandler() {
     ipcMain.on(IPC_MESSAGE.GET_LIST_PRODUCTS, async (event) => {
@@ -15,8 +15,16 @@ function productEventHandler() {
     });
 
     ipcMain.on(IPC_MESSAGE.ADD_TO_CART, async (event, arg) => {
+        const purchageStatus = LocalStorage.get('purchage_status');
+        if (purchageStatus && purchageStatus !== PURCHASE_STATUS.ORDER) {
+            return;
+        }
+        //
         const cart = LocalStorage.getCart();
         if (cart.item_numbers === MAX_CART_ITEMS) {
+            event.reply(IPC_MESSAGE.NOTIFICATION_MODEL_SHOW, {
+                message_key: 'message.max_cart_items',
+            });
             return;
         }
         let localProducts = LocalStorage.getProducts();
@@ -82,6 +90,11 @@ function productEventHandler() {
     });
 
     ipcMain.on(IPC_MESSAGE.REMOVE_CART_ITEM, async (event, arg) => {
+        const purchageStatus = LocalStorage.get('purchage_status');
+        if (purchageStatus && purchageStatus !== PURCHASE_STATUS.ORDER) {
+            return;
+        }
+        //
         const cart = LocalStorage.getCart();
         let localProducts = LocalStorage.getProducts();
 
@@ -120,6 +133,10 @@ function productEventHandler() {
     ipcMain.on(IPC_MESSAGE.GET_CART_ITEMS, async (event) => {
         const cart = LocalStorage.getCart();
         event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
+    });
+
+    ipcMain.on(IPC_MESSAGE.UPDATE_PURCHAGE_STATUS, async (event, arg) => {
+        LocalStorage.set('purchage_status', arg?.status || PURCHASE_STATUS.ORDER);
     });
 }
 

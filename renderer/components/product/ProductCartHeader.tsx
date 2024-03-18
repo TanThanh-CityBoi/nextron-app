@@ -51,7 +51,7 @@ const ProductCartHeader = (props: {
             </div>
             <div className={`${props.collapsed ? 'col-span-2' : 'col-span-4'} relative`}>
                 <div className="bg-primary-600 w-full py-2 ps-8">
-                    <h5 className="line-clamp-1 px-4 text-center font-semibold text-white">
+                    <h5 className="line-clamp-1 pe-10 ps-4 text-center font-semibold text-white">
                         {getTitle(props.purchaseStatus)}
                     </h5>
 

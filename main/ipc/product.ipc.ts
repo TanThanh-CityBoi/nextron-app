@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 import { IPC_MESSAGE } from '@/common/ipc-message';
-import { LocalStorage } from '@/main/helpers';
+import { LocalStorage, STORAGE_KEYS } from '@/main/helpers';
 import { products as productList } from '@/mock-data';
 import { MAX_CART_ITEMS, PURCHASE_STATUS } from '@/common/constants';
 
@@ -27,12 +27,12 @@ function productEventHandler() {
     });
 
     ipcMain.on(IPC_MESSAGE.ADD_TO_CART, async (event, arg) => {
-        const purchageStatus = LocalStorage.get('purchage_status');
+        const purchageStatus = LocalStorage.get(STORAGE_KEYS.PURCHAGE_STATUS);
         if (purchageStatus && purchageStatus !== PURCHASE_STATUS.ORDER) {
             return;
         }
         //
-        const categories = LocalStorage.get('filter_product_categories') || [];
+        const categories = LocalStorage.get(STORAGE_KEYS.FILTER_PRODUCT_CATEGORIES) || [];
         //
         const cart = LocalStorage.getCart();
         if (cart.item_numbers === MAX_CART_ITEMS) {
@@ -106,12 +106,12 @@ function productEventHandler() {
     });
 
     ipcMain.on(IPC_MESSAGE.REMOVE_CART_ITEM, async (event, arg) => {
-        const purchageStatus = LocalStorage.get('purchage_status');
+        const purchageStatus = LocalStorage.get(STORAGE_KEYS.PURCHAGE_STATUS);
         if (purchageStatus && purchageStatus !== PURCHASE_STATUS.ORDER) {
             return;
         }
         //
-        const categories = LocalStorage.get('filter_product_categories') || [];
+        const categories = LocalStorage.get(STORAGE_KEYS.FILTER_PRODUCT_CATEGORIES) || [];
         //
         const cart = LocalStorage.getCart();
         let localProducts = LocalStorage.getProducts();
@@ -155,18 +155,18 @@ function productEventHandler() {
     });
 
     ipcMain.on(IPC_MESSAGE.UPDATE_PURCHAGE_STATUS, async (event, arg) => {
-        LocalStorage.set('purchage_status', arg?.status || PURCHASE_STATUS.ORDER);
+        LocalStorage.set(STORAGE_KEYS.PURCHAGE_STATUS, arg?.status || PURCHASE_STATUS.ORDER);
     });
 
     ipcMain.on(IPC_MESSAGE.FILTER_PRODUCT_CATEGORY, async (event, arg) => {
-        let categories: Array<number> = (LocalStorage.get('filter_product_categories') ||
+        let categories: Array<number> = (LocalStorage.get(STORAGE_KEYS.FILTER_PRODUCT_CATEGORIES) ||
             []) as Array<number>;
         if (categories.includes(arg.cateId)) {
             categories = categories.filter((val) => val !== arg.cateId);
         } else {
             categories.push(arg.cateId);
         }
-        LocalStorage.set('filter_product_categories', categories);
+        LocalStorage.set(STORAGE_KEYS.FILTER_PRODUCT_CATEGORIES, categories);
 
         const products = LocalStorage.getProducts() || productList;
         const productFilter = filterProduct(products, categories);

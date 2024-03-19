@@ -1,6 +1,6 @@
 import { app } from 'electron';
 
-import { appEventHandler, createWindow, reloadSchedule, setAppPath } from '@/main/helpers';
+import { appEventHandler, createWindow, setAppPath, appSchedule } from '@/main/helpers';
 import { WINDOW_CONFIG } from '@/main/configs';
 import { ENV_CONFIG } from '@/common/env.config';
 import ipcEventHandler from '@/main/ipc';
@@ -24,8 +24,8 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
         await mainWindow.loadURL(`http://localhost:${port}/home`);
         mainWindow.webContents.openDevTools();
     }
-    // Reload app
-    reloadSchedule(mainWindow);
+    // app schedule
+    appSchedule(mainWindow);
 })();
 
 appEventHandler();

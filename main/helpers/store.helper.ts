@@ -29,6 +29,14 @@ class StoreHelper extends Store {
     }
 }
 
+const STORAGE_KEYS = {
+    CART: 'cart',
+    PRODUCTS: 'products',
+    LAST_ACTION: 'last_action',
+    PURCHAGE_STATUS: 'purchage_status',
+    FILTER_PRODUCT_CATEGORIES: 'filter_product_categories',
+};
+
 const LocalStorage = new StoreHelper('local-storage');
 
-export { LocalStorage };
+export { LocalStorage, STORAGE_KEYS };

@@ -21,7 +21,7 @@ const ProductCartWrapper = () => {
     });
 
     const changePurchaseStatus = (status: string) => {
-        window.ipc.send(IPC_MESSAGE.UPDATE_PURCHAGE_STATUS, { status });
+        window.ipc.send(IPC_MESSAGE.UPDATE_PURCHASE_STATUS, { status });
         setPurchaseStatus(status);
     };
 

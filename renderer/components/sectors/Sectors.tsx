@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { sectors } from '@/mock-data';
 import { useEffect, useState } from 'react';
 import { IPC_MESSAGE } from '@/common/ipc-message';
 
 const Sectors = () => {
-    const [productCategories, setProductCategories] = useState([]);
+    const [filterCategories, setFilterCategories] = useState([]);
+    const [listCategories, setListCategories] = useState([]);
     const { i18n } = useTranslation();
     const lang = i18n.language;
 
@@ -13,19 +13,24 @@ const Sectors = () => {
     };
 
     useEffect(() => {
+        window.ipc.send(IPC_MESSAGE.GET_LIST_CATEGORIES, {});
+
         window.ipc.on(IPC_MESSAGE.FILTER_PRODUCT_CATEGORY_REPLY, (arg: any) => {
-            setProductCategories(arg?.categories || []);
+            setFilterCategories(arg?.categories || []);
+        });
+        window.ipc.on(IPC_MESSAGE.GET_LIST_CATEGORIES_REPLY, (arg: any) => {
+            setListCategories(arg?.categories || []);
         });
     }, []);
 
     return (
         <div className="flex gap-5 p-4">
-            {sectors.map((item, id) => {
+            {listCategories.map((item, id) => {
                 return (
                     <button
                         key={id}
                         onClick={() => handleFilter(item.id)}
-                        className={`flex items-center rounded-full p-1 shadow-lg ${productCategories.includes(item.id) ? 'bg-primary-200' : 'bg-white'}`}
+                        className={`flex items-center rounded-full p-1 shadow-lg ${filterCategories.includes(item.id) ? 'bg-primary-200' : 'bg-white'}`}
                     >
                         <div className="relative aspect-square min-h-10 min-w-10 rounded-full">
                             <img

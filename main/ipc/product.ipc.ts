@@ -27,8 +27,8 @@ function productEventHandler() {
     });
 
     ipcMain.on(IPC_MESSAGE.ADD_TO_CART, async (event, arg) => {
-        const purchageStatus = LocalStorage.get(STORAGE_KEYS.PURCHAGE_STATUS);
-        if (purchageStatus && purchageStatus !== PURCHASE_STATUS.ORDER) {
+        const purchaseStatus = LocalStorage.get(STORAGE_KEYS.PURCHASE_STATUS);
+        if (purchaseStatus && purchaseStatus !== PURCHASE_STATUS.ORDER) {
             return;
         }
         //
@@ -38,6 +38,8 @@ function productEventHandler() {
         if (cart.item_numbers === MAX_CART_ITEMS) {
             event.reply(IPC_MESSAGE.NOTIFICATION_MODEL_SHOW, {
                 message_key: 'message.max_cart_items',
+                button_key: 'button.close_title',
+                modal_type: 'error',
             });
             return;
         }
@@ -106,8 +108,8 @@ function productEventHandler() {
     });
 
     ipcMain.on(IPC_MESSAGE.REMOVE_CART_ITEM, async (event, arg) => {
-        const purchageStatus = LocalStorage.get(STORAGE_KEYS.PURCHAGE_STATUS);
-        if (purchageStatus && purchageStatus !== PURCHASE_STATUS.ORDER) {
+        const purchaseStatus = LocalStorage.get(STORAGE_KEYS.PURCHASE_STATUS);
+        if (purchaseStatus && purchaseStatus !== PURCHASE_STATUS.ORDER) {
             return;
         }
         //
@@ -154,8 +156,8 @@ function productEventHandler() {
         event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
     });
 
-    ipcMain.on(IPC_MESSAGE.UPDATE_PURCHAGE_STATUS, async (event, arg) => {
-        LocalStorage.set(STORAGE_KEYS.PURCHAGE_STATUS, arg?.status || PURCHASE_STATUS.ORDER);
+    ipcMain.on(IPC_MESSAGE.UPDATE_PURCHASE_STATUS, async (event, arg) => {
+        LocalStorage.set(STORAGE_KEYS.PURCHASE_STATUS, arg?.status || PURCHASE_STATUS.ORDER);
     });
 
     ipcMain.on(IPC_MESSAGE.FILTER_PRODUCT_CATEGORY, async (event, arg) => {

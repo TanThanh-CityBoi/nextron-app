@@ -14,7 +14,8 @@
     },
     "message": {
         "max_cart_items": "Bạn chỉ có thể chọn tối đa 5 sản phẩm",
-        "empty_cart": "Giỏ hàng trống"
+        "empty_cart": "Giỏ hàng trống",
+        "payment_success": "Thanh toán thành công"
     },
     "button": {
         "close_title": "Đóng"

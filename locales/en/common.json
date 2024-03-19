@@ -14,7 +14,8 @@
     },
     "message": {
         "max_cart_items": "You can only select up to 5 items",
-        "empty_cart": "Cart is empty"
+        "empty_cart": "Cart is empty",
+        "payment_success": "Payment Success"
     },
     "button": {
         "close_title": "Close"

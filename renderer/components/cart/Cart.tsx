@@ -25,6 +25,7 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
                 sub: {
                     message_key: 'message.empty_cart',
                     button_key: 'button.close_title',
+                    modal_type: 'error',
                 },
             });
             return;

@@ -4,7 +4,7 @@ import BaseModal from './BaseModal';
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-type NotifyModalProps = {
+type ModalErrorProps = {
     showModal: boolean;
     setShowModal: Function;
     handleOk?: Function;
@@ -13,7 +13,7 @@ type NotifyModalProps = {
     message?: string;
 };
 
-const NotifyModal = ({ ...props }: React.AllHTMLAttributes<ReactElement> & NotifyModalProps) => {
+const ModalError = ({ ...props }: React.AllHTMLAttributes<ReactElement> & ModalErrorProps) => {
     const commonT = useTranslation('common');
 
     const handleCancel = () => {
@@ -73,4 +73,4 @@ const NotifyModal = ({ ...props }: React.AllHTMLAttributes<ReactElement> & Notif
         </>
     );
 };
-export default NotifyModal;
+export default ModalError;

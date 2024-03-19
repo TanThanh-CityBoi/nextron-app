@@ -33,7 +33,7 @@ const STORAGE_KEYS = {
     CART: 'cart',
     PRODUCTS: 'products',
     LAST_ACTION: 'last_action',
-    PURCHAGE_STATUS: 'purchage_status',
+    PURCHASE_STATUS: 'purchase_status',
     FILTER_PRODUCT_CATEGORIES: 'filter_product_categories',
 };
 

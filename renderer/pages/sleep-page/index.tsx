@@ -10,12 +10,15 @@ function SleepPage() {
                 <title>Sleep Page- Nextron</title>
             </Head>
             <div
-                className="bg-primary-200 h-screen w-full"
+                className="h-screen w-full"
                 onClick={() => {
                     router.push('/home', '/home');
                 }}
             >
-                Sleep Page
+                <video
+                    src="https://embed-ssl.wistia.com/deliveries/262fd8e350169efeecfd5bfce33b7997f5a8fec0.bin"
+                    className="h-full w-full object-cover"
+                ></video>
             </div>
         </Fragment>
     );

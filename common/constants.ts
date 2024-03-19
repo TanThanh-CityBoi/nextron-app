@@ -10,6 +10,6 @@ const PURCHASE_STATUS = {
     PAYMENT: 'PAYMENT',
 };
 
-const SLEEP_TIMEOUT = 10; // second
+const SLEEP_TIMEOUT = 300; // second
 
 export { LOCALES, MAX_CART_ITEMS, PURCHASE_STATUS, SLEEP_TIMEOUT };

@@ -60,7 +60,7 @@ const ModalSuccess = ({ ...props }: React.AllHTMLAttributes<ReactElement> & Moda
                     <div className="flex justify-center py-10">
                         <div className="aspect-square h-40 rounded-full bg-white py-5 pe-3 ps-6">
                             <img
-                                alt="error.img"
+                                alt="success-icon.img"
                                 src="/images/success-icon.png"
                                 className="h-full w-full"
                             ></img>

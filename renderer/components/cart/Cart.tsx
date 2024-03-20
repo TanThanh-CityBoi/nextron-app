@@ -44,7 +44,7 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
     };
 
     useEffect(() => {
-        if (cartItems.length > preItems.length) {
+        if (cartItems.length > preItems.length && cartItems.length > 5) {
             scrollToBottom();
         }
         setPreItems(cartItems);

@@ -38,6 +38,7 @@ function productEventHandler() {
         if (cart.item_numbers === MAX_CART_ITEMS) {
             event.reply(IPC_MESSAGE.NOTIFICATION_MODEL_SHOW, {
                 message_key: 'message.max_cart_items',
+                message_sub: { max_cart_items: MAX_CART_ITEMS },
                 button_key: 'button.close_title',
                 modal_type: 'error',
             });

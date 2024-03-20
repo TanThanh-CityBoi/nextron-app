@@ -94,6 +94,66 @@ const products = [
         discount: 30,
         categories: [2, 3],
     },
+    {
+        id: 9,
+        name_en: 'Coca-cola en',
+        name_vi: 'Coca-cola vi',
+        price: 10000,
+        sellPrice: 9000,
+        thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
+        amount: 1,
+        discount: 30,
+        categories: [2, 3],
+    },
+    {
+        id: 9,
+        name_en: 'Coca-cola en',
+        name_vi: 'Coca-cola vi',
+        price: 10000,
+        sellPrice: 9000,
+        thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
+        amount: 1,
+        discount: 30,
+        categories: [2, 3],
+    },
+    {
+        id: 9,
+        name_en: 'Coca-cola en',
+        name_vi: 'Coca-cola vi',
+        price: 10000,
+        sellPrice: 9000,
+        thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
+        amount: 1,
+        discount: 30,
+        categories: [2, 3],
+    },
+    {
+        id: 9,
+        name_en: 'Coca-cola en',
+        name_vi: 'Coca-cola vi',
+        price: 10000,
+        sellPrice: 9000,
+        thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
+        amount: 1,
+        discount: 30,
+        categories: [2, 3],
+    },
+    {
+        id: 9,
+        name_en: 'Coca-cola en',
+        name_vi: 'Coca-cola vi',
+        price: 10000,
+        sellPrice: 9000,
+        thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbK0Kc97KlOULff3-iG2M7gURK-vxE5DYEGg&usqp=CAU',
+        amount: 1,
+        discount: 30,
+        categories: [2, 3],
+    },
 ];
 
 export { products };

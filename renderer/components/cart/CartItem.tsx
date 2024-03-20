@@ -13,8 +13,8 @@ const CartItem = (props: {
     amount: number;
     thumbnail: string;
 }) => {
-    const { i18n } = useTranslation();
-    const lang = i18n.language;
+    const commonT = useTranslation('common');
+    const lang = commonT.i18n.language;
 
     const addItem = (id) => {
         window.ipc.send(IPC_MESSAGE.ADD_TO_CART, { id });
@@ -34,12 +34,12 @@ const CartItem = (props: {
                 ></img>
             </div>
             <div>
-                <div>
-                    <h5 className="line-clamp-1 font-semibold">{props?.[`name_${lang}`]}</h5>
-                </div>
-                <div className="text-lg font-semibold">Đơn giá: {props.price} đ</div>
-                <div className="flex gap-x-4 py-2 font-semibold text-gray-400">
-                    <div className="text-lg">Số lượng: </div>
+                <h6 className="line-clamp-1 font-bold leading-6">{props?.[`name_${lang}`]}</h6>
+                <h6 className="line-clamp-1 font-semibold leading-6">
+                    {commonT.t('cart.cart_item.price')}: {props.price} đ
+                </h6>
+                <div className="flex gap-x-4 py-1 font-semibold text-gray-400">
+                    <h6 className="line-clamp-1">{commonT.t('cart.cart_item.amount')}: </h6>
                     <div className="flex">
                         <button
                             className="bg-primary-300 rounded-sm px-2 py-1"

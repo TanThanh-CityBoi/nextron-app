@@ -35,23 +35,24 @@ const ProductCard = (props: ProductProps) => {
 
     return (
         <div
-            className="relative rounded-xl bg-gray-100  p-2 shadow-lg"
+            className="relative h-full w-full rounded-xl bg-white p-2 shadow-lg"
             onClick={() => handleAddToCart({ ...props })}
         >
-            <div className="relative aspect-square h-full w-full rounded-t-xl">
+            <div className="relative aspect-[7/6] w-full rounded-t-xl">
                 <img
                     className="absolute h-full w-full rounded-t-xl object-cover"
                     src={props.thumbnail}
                     alt="product.img"
                 ></img>
             </div>
+
             <div className="py-2">
                 <p className="text-center font-semibold">{props?.[`name_${lang}`]}</p>
                 <p className="text-center font-semibold">{props.sellPrice} đ</p>
                 <p className="text-center line-through">{props.price} đ</p>
             </div>
 
-            <div className="absolute right-3 top-3 rounded-lg bg-gray-300 p-3">
+            <div className="absolute right-2 top-2 flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
                 <p className="font-bold text-gray-600">{props.amount}</p>
             </div>
 

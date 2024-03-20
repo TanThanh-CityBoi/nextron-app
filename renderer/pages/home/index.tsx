@@ -11,7 +11,7 @@ function HomePage() {
             <Head>
                 <title>Home - Nextron</title>
             </Head>
-            <div className="">
+            <div className="h-full py-4">
                 <Sectors></Sectors>
                 <ProductCartWrapper></ProductCartWrapper>
             </div>

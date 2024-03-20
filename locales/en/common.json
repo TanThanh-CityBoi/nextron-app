@@ -1,7 +1,11 @@
 {
     "title": "title-en",
     "cart": {
-        "btn_payment": "Payment"
+        "btn_payment": "Payment",
+        "cart_item": {
+            "price": "Price",
+            "amount": "Amount"
+        }
     },
     "modal": {
         "base_modal": {
@@ -13,7 +17,7 @@
         }
     },
     "message": {
-        "max_cart_items": "You can only select up to 5 items",
+        "max_cart_items": "You can only select up to {{max_cart_items}} items",
         "empty_cart": "Cart is empty",
         "payment_success": "Payment Success"
     },

@@ -14,7 +14,7 @@ const Header = () => {
     };
 
     return (
-        <div className="flex items-start justify-between px-6 py-12">
+        <div className="py-auto flex h-full items-center justify-between px-6 py-2">
             <div className="relative aspect-video h-20 px-2">
                 <img
                     className="absolute h-full w-full"

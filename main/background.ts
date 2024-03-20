@@ -18,10 +18,10 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
     const mainWindow = createWindow('main', WINDOW_CONFIG);
 
     if (isProd) {
-        await mainWindow.loadURL('app://./home');
+        await mainWindow.loadURL('app://./sleep-page');
     } else {
         const port = process.argv[2];
-        await mainWindow.loadURL(`http://localhost:${port}/home`);
+        await mainWindow.loadURL(`http://localhost:${port}/sleep-page`);
         mainWindow.webContents.openDevTools();
     }
     // app schedule

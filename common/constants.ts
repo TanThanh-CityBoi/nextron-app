@@ -2,7 +2,7 @@ const LOCALES = {
     vi: 'vi',
     en: 'en',
 };
-const MAX_CART_ITEMS = 5;
+const MAX_CART_ITEMS = 7;
 
 const PURCHASE_STATUS = {
     ORDER: 'ORDER',

@@ -24,7 +24,7 @@ const Sectors = () => {
     }, []);
 
     return (
-        <div className="flex gap-5 p-4">
+        <div className="flex gap-5 px-4 py-2">
             {listCategories.map((item, id) => {
                 return (
                     <button

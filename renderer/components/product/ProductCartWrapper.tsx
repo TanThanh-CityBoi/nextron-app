@@ -8,17 +8,35 @@ import ProductCartHeader from './ProductCartHeader';
 import ProductCatalog from './ProductCatalog';
 import Payment from '../payment/Payment';
 import Cart from '../cart/Cart';
+import PrimaryButton from '../ui/button/PrimaryButton';
 
 const ProductCartWrapper = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [purchaseStatus, setPurchaseStatus] = useState(PURCHASE_STATUS.ORDER);
 
     const [products, setProducts] = useState([]);
+    const [productsPerPage, setProductsPerPage] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
     const [cart, setCart] = useState<CartType>({
         item_numbers: 0,
         items: [],
         total: 0,
     });
+
+    const collapToggle = (status: boolean) => {
+        if (status !== collapsed) {
+            handleChangePage(1, status);
+            setCollapsed(status);
+        }
+    };
+
+    const handleChangePage = (page: number, collapStatus = collapsed) => {
+        const perPage = collapStatus == true ? 15 : 9;
+        if (page < 1 || perPage * (page - 1) > products?.length) return;
+        const items = products.slice((page - 1) * perPage, perPage * page);
+        setProductsPerPage(items);
+        setCurrentPage(page);
+    };
 
     const changePurchaseStatus = (status: string) => {
         window.ipc.send(IPC_MESSAGE.UPDATE_PURCHASE_STATUS, { status });
@@ -39,7 +57,10 @@ const ProductCartWrapper = () => {
     useEffect(() => {
         window.ipc.send(IPC_MESSAGE.GET_LIST_PRODUCTS, {});
         window.ipc.on(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, (arg: any) => {
+            const perPage = collapsed == true ? 15 : 9;
+            const items = arg.slice(0, perPage);
             setProducts(arg);
+            setProductsPerPage(items);
         });
         window.ipc.on(IPC_MESSAGE.GET_CART_ITEMS_REPLY, (arg: any) => {
             setCart(arg);
@@ -47,25 +68,42 @@ const ProductCartWrapper = () => {
     }, []);
 
     return (
-        <div className="">
+        <div className="py-2">
             <ProductCartHeader
-                setCollapsed={setCollapsed}
+                setCollapsed={collapToggle}
                 collapsed={collapsed}
                 purchaseStatus={purchaseStatus}
                 setPurchaseStatus={changePurchaseStatus}
                 cart={cart}
             ></ProductCartHeader>
 
-            <div className="grid h-[50vh] grid-cols-12">
+            <div className="grid min-h-[850px] grid-cols-5 bg-transparent">
                 <div
-                    className={`${collapsed ? 'col-span-12' : 'col-span-8'} no-scrollbar mt-4 overflow-x-scroll`}
+                    className={`${collapsed ? 'col-span-5' : 'col-span-3'}  no-scrollbar mt-4 overflow-x-scroll`}
                 >
-                    <ProductCatalog products={products}></ProductCatalog>
+                    <ProductCatalog
+                        collapsed={collapsed}
+                        products={productsPerPage}
+                    ></ProductCatalog>
                 </div>
 
-                <div className={`${collapsed ? 'hidden' : 'col-span-4'}`}>
+                <div className={`${collapsed ? 'hidden' : 'col-span-2'}`}>
                     {getStatusComponent(purchaseStatus)}
                 </div>
+            </div>
+            <div className="flex justify-center gap-x-4 py-4">
+                <PrimaryButton
+                    className="!px-16"
+                    background="bg-primary-600"
+                    content="Prev"
+                    onClick={() => handleChangePage(currentPage - 1)}
+                ></PrimaryButton>
+                <PrimaryButton
+                    className="!px-16"
+                    background="bg-primary-600"
+                    content="Next"
+                    onClick={() => handleChangePage(currentPage + 1)}
+                ></PrimaryButton>
             </div>
         </div>
     );

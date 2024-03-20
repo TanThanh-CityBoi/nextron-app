@@ -43,13 +43,13 @@ const ProductCartHeader = (props: {
     };
 
     return (
-        <div className="grid grid-cols-12">
-            <div className={`${props.collapsed ? 'col-span-10' : 'col-span-8'}`}>
-                <div className="bg-primary-600 line-clamp-1 w-max rounded-e-full px-4 py-2 font-semibold text-gray-100">
-                    <h5>{homeT.t('product_list.title')}</h5>
+        <div className="grid grid-cols-5">
+            <div className={`${props.collapsed ? 'col-span-4' : 'col-span-3'}`}>
+                <div className="bg-primary-600 line-clamp-1 w-max rounded-e-full px-16 py-2 font-semibold text-gray-100">
+                    <h5 className="text-center">{homeT.t('product_list.title')}</h5>
                 </div>
             </div>
-            <div className={`${props.collapsed ? 'col-span-2' : 'col-span-4'} relative`}>
+            <div className={`${props.collapsed ? 'col-span-1' : 'col-span-2'} relative`}>
                 <div className="bg-primary-600 w-full py-2 ps-8">
                     <h5 className="line-clamp-1 pe-10 ps-4 text-center font-semibold text-white">
                         {getTitle(props.purchaseStatus)}

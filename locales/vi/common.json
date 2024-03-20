@@ -1,7 +1,11 @@
 {
     "title": "title-vi",
     "cart": {
-        "btn_payment": "Thanh toán"
+        "btn_payment": "Thanh toán",
+        "cart_item": {
+            "price": "Đơn giá",
+            "amount": "Số lượng"
+        }
     },
     "modal": {
         "base_modal": {
@@ -13,7 +17,7 @@
         }
     },
     "message": {
-        "max_cart_items": "Bạn chỉ có thể chọn tối đa 5 sản phẩm",
+        "max_cart_items": "Bạn chỉ có thể chọn tối đa {{max_cart_items}} sản phẩm",
         "empty_cart": "Giỏ hàng trống",
         "payment_success": "Thanh toán thành công"
     },

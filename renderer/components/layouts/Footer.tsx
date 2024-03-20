@@ -1,8 +1,8 @@
 const Footer = () => {
     return (
-        <div className="h-full aspect-auto relative">
+        <div className="flex">
             <img
-                className="object-cover h-full w-full absolute"
+                className="w-full items-center justify-center object-contain"
                 src="/images/footer.jpg"
                 alt="footer.img"
             ></img>

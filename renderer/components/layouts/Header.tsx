@@ -14,7 +14,7 @@ const Header = () => {
     };
 
     return (
-        <div className="py-auto flex h-full items-center justify-between px-6 py-2">
+        <div className="py-auto flex h-full items-center justify-between px-6 py-2 shadow-md">
             <div className="relative aspect-video h-20 px-2">
                 <img
                     className="absolute h-full w-full"
@@ -23,10 +23,10 @@ const Header = () => {
                 ></img>
             </div>
 
-            <div className="flex rounded-xl border border-gray-300 p-0.5">
+            <div className="flex items-center justify-center rounded-xl border border-gray-300 bg-white p-1">
                 <button
                     className={`flex items-center px-3 py-1.5 ${
-                        lang == LOCALES.vi ? 'rounded-xl bg-gray-200' : ''
+                        lang == LOCALES.vi ? 'bg-primary-200 rounded-lg' : ''
                     }`}
                     onClick={() => changeLang(LOCALES.vi)}
                 >
@@ -34,7 +34,7 @@ const Header = () => {
                 </button>
                 <button
                     className={`flex items-center px-3 py-1.5 ${
-                        lang == LOCALES.en ? 'rounded-xl bg-gray-200' : ''
+                        lang == LOCALES.en ? 'bg-primary-200 rounded-lg' : ''
                     }`}
                     onClick={() => changeLang(LOCALES.en)}
                 >

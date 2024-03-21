@@ -25,7 +25,10 @@ const CartItem = (props: {
     };
 
     return (
-        <div className="relative my-3 flex items-center gap-x-4 rounded-xl border border-gray-200 bg-white px-4 py-1 shadow-md">
+        <div
+            id={`cart-item-${props.id}`}
+            className="cart-item-show relative my-3 flex items-center gap-x-4 rounded-xl border border-gray-200 bg-white px-4 py-1 shadow-md"
+        >
             <div className="relative aspect-square h-20 w-20">
                 <img
                     className="absolute h-full w-full rounded-full object-cover"

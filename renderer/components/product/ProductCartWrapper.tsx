@@ -68,7 +68,7 @@ const ProductCartWrapper = () => {
     }, []);
 
     return (
-        <div className="py-2">
+        <div className="py-6">
             <ProductCartHeader
                 setCollapsed={collapToggle}
                 collapsed={collapsed}
@@ -77,9 +77,9 @@ const ProductCartWrapper = () => {
                 cart={cart}
             ></ProductCartHeader>
 
-            <div className="grid min-h-[850px] grid-cols-5 bg-transparent">
+            <div className="grid h-[850px] grid-cols-5 bg-transparent">
                 <div
-                    className={`${collapsed ? 'col-span-5' : 'col-span-3'}  no-scrollbar mt-4 overflow-x-scroll`}
+                    className={`${collapsed ? 'col-span-5' : 'col-span-3'}  no-scrollbar h-full  overflow-x-scroll py-4`}
                 >
                     <ProductCatalog
                         collapsed={collapsed}
@@ -87,7 +87,9 @@ const ProductCartWrapper = () => {
                     ></ProductCatalog>
                 </div>
 
-                <div className={`${collapsed ? 'hidden' : 'col-span-2'}`}>
+                <div
+                    className={`${collapsed ? 'hidden' : 'col-span-2 overflow-hidden'} h-[850px] pb-4`}
+                >
                     {getStatusComponent(purchaseStatus)}
                 </div>
             </div>

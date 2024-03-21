@@ -50,30 +50,36 @@ const ProductCartHeader = (props: {
                 </div>
             </div>
             <div className={`${props.collapsed ? 'col-span-1' : 'col-span-2'} relative`}>
-                <div className="bg-primary-600 w-full py-2 ps-8">
-                    <h5 className="line-clamp-1 pe-10 ps-4 text-center font-semibold text-white">
-                        {getTitle(props.purchaseStatus)}
-                    </h5>
-
-                    <button
-                        className="bg-primary-600 absolute -left-8 -top-2.5 h-16 w-16 rounded-full p-1"
-                        onClick={() => props.setCollapsed(!props.collapsed)}
+                <div className="absolute -bottom-5 -left-8 -top-5 right-0 z-10 flex items-center overflow-x-hidden ps-8">
+                    <div
+                        className={`${props.collapsed ? '' : 'cart-header-show'} bg-primary-600 relative w-full py-2 ps-8`}
                     >
-                        <span className="flex h-full w-full items-center justify-center rounded-full bg-white">
-                            {getIconTitle(props.purchaseStatus)}
-                        </span>
-                    </button>
+                        <h5 className="line-clamp-1 pe-10 ps-4 text-center font-semibold text-white">
+                            {getTitle(props.purchaseStatus)}
+                        </h5>
 
-                    {props.purchaseStatus !== PURCHASE_STATUS.ORDER && (
                         <button
-                            className="absolute right-1.5 top-1.5 rounded-md bg-white px-3 py-1"
-                            onClick={() => props.setPurchaseStatus(getBack(props.purchaseStatus))}
+                            className="bg-primary-600 absolute -left-7 -top-3 z-10 h-16 w-16 rounded-full p-1"
+                            onClick={() => props.setCollapsed(!props.collapsed)}
                         >
                             <span className="flex h-full w-full items-center justify-center rounded-full bg-white">
-                                <RiArrowGoBackFill className="text-primary-600" size={25} />
+                                {getIconTitle(props.purchaseStatus)}
                             </span>
                         </button>
-                    )}
+
+                        {props.purchaseStatus !== PURCHASE_STATUS.ORDER && (
+                            <button
+                                className="absolute right-1.5 top-1.5 rounded-md bg-white px-3 py-1"
+                                onClick={() =>
+                                    props.setPurchaseStatus(getBack(props.purchaseStatus))
+                                }
+                            >
+                                <span className="flex h-full w-full items-center justify-center rounded-full bg-white">
+                                    <RiArrowGoBackFill className="text-primary-600" size={25} />
+                                </span>
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

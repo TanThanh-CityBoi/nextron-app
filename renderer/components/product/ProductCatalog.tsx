@@ -7,11 +7,11 @@ const ProductCatalog = (props: { products: ProductType[]; collapsed: Boolean }) 
     return (
         <>
             <div
-                className={`${props.collapsed ? 'grid-cols-5' : 'grid-cols-3'} grid gap-x-4 gap-y-4 px-4 pb-4`}
+                className={`${props.collapsed ? 'grid-cols-5' : 'grid-cols-3'} grid h-full grid-rows-3 gap-x-4 gap-y-4 px-4`}
             >
                 {props.products.map((item, id) => {
                     return (
-                        <div className="min-h-56" key={id}>
+                        <div className="" key={id}>
                             <ProductCard
                                 id={item.id}
                                 thumbnail={item.thumbnail}

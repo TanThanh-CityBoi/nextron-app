@@ -37,7 +37,7 @@ const MainLayout = ({ children }) => {
     }, []);
 
     return (
-        <div className="bg-primary-50 grid h-full grid-flow-col grid-rows-10 gap-4">
+        <div className="bg-primary-50 grid min-h-[100vh] grid-flow-col grid-rows-10 gap-4">
             <div className="bg-primary-100 row-span-1">
                 <Header></Header>
             </div>

@@ -68,3 +68,53 @@ p {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+
+/* ----- */
+
+@keyframes show-right-animation {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+@keyframes cart-show-animation {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes cart-header-show-animation {
+  0% {
+    transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .cart-item-show {
+    animation: show-right-animation 0.7s;
+  }
+  .cart-show {
+    animation: cart-show-animation 0.6s;
+  }
+  .cart-header-show {
+    animation: cart-header-show-animation 0.6s;
+  }
+}

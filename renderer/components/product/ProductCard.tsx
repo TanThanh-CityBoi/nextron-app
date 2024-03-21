@@ -38,7 +38,7 @@ const ProductCard = (props: ProductProps) => {
             className="relative h-full w-full rounded-xl bg-white p-2 shadow-lg"
             onClick={() => handleAddToCart({ ...props })}
         >
-            <div className="relative aspect-[7/6] w-full rounded-t-xl">
+            <div className="relative h-3/5 w-full rounded-t-xl">
                 <img
                     className="absolute h-full w-full rounded-t-xl object-cover"
                     src={props.thumbnail}
@@ -52,7 +52,7 @@ const ProductCard = (props: ProductProps) => {
                 <p className="text-center line-through">{props.price} đ</p>
             </div>
 
-            <div className="absolute right-2 top-2 flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
+            <div className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
                 <p className="font-bold text-gray-600">{props.amount}</p>
             </div>
 

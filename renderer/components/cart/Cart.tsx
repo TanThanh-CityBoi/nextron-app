@@ -59,8 +59,8 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
     }, []);
 
     return (
-        <div className="border-primary-600 rounded-bl-xl border-b-4 border-s-4 bg-white shadow-2xl">
-            <div className="h-[580px] px-2 py-3">
+        <div className="cart-show border-primary-600 flex h-full flex-col justify-between rounded-bl-xl border-b-4 border-s-4 bg-white shadow-xl">
+            <div className="h-max max-h-[580px] px-2 py-3">
                 <div className="no-scrollbar h-full overflow-x-scroll">
                     {cartItems?.map((item, idx) => {
                         return (
@@ -80,7 +80,7 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
                 </div>
             </div>
 
-            <div className="bg-primary-100 rounded-bl-xl px-4 pb-5 pt-10">
+            <div className="bg-primary-100 flex h-[250px] flex-col justify-between rounded-bl-xl px-4 pb-5 pt-5">
                 <div className="mb-3 flex justify-between">
                     <h5 className="font-semibold">{homeT.t('cart.cart_total')}:</h5>
                     <h5 className="font-semibold">{cart.total} đ</h5>

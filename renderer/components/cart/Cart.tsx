@@ -59,7 +59,7 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
     }, []);
 
     return (
-        <div className="cart-show border-primary-600 flex h-full flex-col justify-between rounded-bl-xl border-b-4 border-s-4 bg-white shadow-xl">
+        <div className="border-primary-600 flex h-full flex-col justify-between rounded-bl-xl border-b-4 border-s-4 bg-white shadow-xl">
             <div className="h-max max-h-[580px] px-2 py-3">
                 <div className="no-scrollbar h-full overflow-x-scroll">
                     {cartItems?.map((item, idx) => {

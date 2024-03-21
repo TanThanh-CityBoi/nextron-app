@@ -87,9 +87,7 @@ const ProductCartWrapper = () => {
                     ></ProductCatalog>
                 </div>
 
-                <div
-                    className={`${collapsed ? 'hidden' : 'col-span-2 overflow-hidden'} h-[850px] pb-4`}
-                >
+                <div className={`${collapsed ? 'cart-hide' : 'cart-show'} h-[850px] pb-4`}>
                     {getStatusComponent(purchaseStatus)}
                 </div>
             </div>

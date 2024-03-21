@@ -44,15 +44,17 @@ const ProductCartHeader = (props: {
 
     return (
         <div className="grid grid-cols-5">
-            <div className={`${props.collapsed ? 'col-span-4' : 'col-span-3'}`}>
+            <div className={`${props.collapsed ? 'prod-header-show' : 'col-span-3'}`}>
                 <div className="bg-primary-600 line-clamp-1 w-max rounded-e-full px-16 py-2 font-semibold text-gray-100">
                     <h5 className="text-center">{homeT.t('product_list.title')}</h5>
                 </div>
             </div>
-            <div className={`${props.collapsed ? 'col-span-1' : 'col-span-2'} relative`}>
+            <div
+                className={`${props.collapsed ? 'cart-header-hide' : 'cart-header-show'} relative`}
+            >
                 <div className="absolute -bottom-5 -left-8 -top-5 right-0 z-10 flex items-center overflow-x-hidden ps-8">
                     <div
-                        className={`${props.collapsed ? '' : 'cart-header-show'} bg-primary-600 relative w-full py-2 ps-8`}
+                        className={`${props.collapsed ? '' : ''} bg-primary-600 relative w-full py-2 ps-8`}
                     >
                         <h5 className="line-clamp-1 pe-10 ps-4 text-center font-semibold text-white">
                             {getTitle(props.purchaseStatus)}

@@ -107,7 +107,7 @@ const products = [
         categories: [2, 3],
     },
     {
-        id: 9,
+        id: 10,
         name_en: 'Coca-cola en',
         name_vi: 'Coca-cola vi',
         price: 10000,
@@ -119,7 +119,7 @@ const products = [
         categories: [2, 3],
     },
     {
-        id: 9,
+        id: 11,
         name_en: 'Coca-cola en',
         name_vi: 'Coca-cola vi',
         price: 10000,
@@ -131,7 +131,7 @@ const products = [
         categories: [2, 3],
     },
     {
-        id: 9,
+        id: 12,
         name_en: 'Coca-cola en',
         name_vi: 'Coca-cola vi',
         price: 10000,
@@ -143,7 +143,7 @@ const products = [
         categories: [2, 3],
     },
     {
-        id: 9,
+        id: 13,
         name_en: 'Coca-cola en',
         name_vi: 'Coca-cola vi',
         price: 10000,

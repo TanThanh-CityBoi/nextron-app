@@ -18,7 +18,7 @@ const PrimaryButton = ({
                 whitespace-nowrap rounded-lg px-4 py-2
                 font-normal leading-6 text-white hover:opacity-70
             ${className} 
-            ${background || 'from-primary-500 to-primary-800 bg-gradient-to-r'}
+            ${background || 'from-primary-500 to-primary-700 bg-gradient-to-r'}
             `}
                 {...props}
             >

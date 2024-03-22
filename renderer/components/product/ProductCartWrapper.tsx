@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr';
 
 import { IPC_MESSAGE } from '@/common/ipc-message';
 import { PURCHASE_STATUS } from '@/common/constants';
@@ -8,14 +9,35 @@ import ProductCartHeader from './ProductCartHeader';
 import ProductCatalog from './ProductCatalog';
 import Payment from '../payment/Payment';
 import Cart from '../cart/Cart';
-import PrimaryButton from '../ui/button/PrimaryButton';
+
+const Paging = (props: {
+    perPage: number;
+    currentPage: number;
+    handleChangePage: Function;
+    amount: number;
+}) => {
+    const totalPages = Math.ceil(props.amount / props.perPage);
+    const arrayEmpty = new Array(totalPages).fill('');
+
+    return (
+        <div className="flex h-10 items-center justify-center gap-2">
+            {arrayEmpty.map((val, idx) => (
+                <div
+                    key={idx}
+                    className={`${props.currentPage === idx + 1 ? 'page-dot bg-primary-200 w-[120px]' : ' bg-primary-50 w-20'} h-5 rounded-xl border border-gray-300 shadow-md`}
+                    onClick={() => props.handleChangePage(idx + 1)}
+                ></div>
+            ))}
+        </div>
+    );
+};
 
 const ProductCartWrapper = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [purchaseStatus, setPurchaseStatus] = useState(PURCHASE_STATUS.ORDER);
 
     const [products, setProducts] = useState([]);
-    const [productsPerPage, setProductsPerPage] = useState([]);
+    const [productsInPage, setProductsInPage] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [cart, setCart] = useState<CartType>({
         item_numbers: 0,
@@ -34,7 +56,7 @@ const ProductCartWrapper = () => {
         const perPage = collapStatus == true ? 15 : 9;
         if (page < 1 || perPage * (page - 1) > products?.length) return;
         const items = products.slice((page - 1) * perPage, perPage * page);
-        setProductsPerPage(items);
+        setProductsInPage(items);
         setCurrentPage(page);
     };
 
@@ -58,19 +80,19 @@ const ProductCartWrapper = () => {
         window.ipc.send(IPC_MESSAGE.GET_LIST_PRODUCTS, {});
         window.ipc.on(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, (arg: any) => {
             const perPage = collapsed == true ? 15 : 9;
-            const items = arg.slice(0, perPage);
+            const items = arg.slice((currentPage - 1) * perPage, perPage * currentPage);
             setProducts(arg);
-            setProductsPerPage(items);
+            setProductsInPage(items);
         });
         window.ipc.on(IPC_MESSAGE.GET_CART_ITEMS_REPLY, (arg: any) => {
             setCart(arg);
         });
-    }, []);
+    }, [collapsed, currentPage]);
 
     return (
         <div className="py-6">
             <ProductCartHeader
-                setCollapsed={collapToggle}
+                collapToggle={collapToggle}
                 collapsed={collapsed}
                 purchaseStatus={purchaseStatus}
                 setPurchaseStatus={changePurchaseStatus}
@@ -83,7 +105,7 @@ const ProductCartWrapper = () => {
                 >
                     <ProductCatalog
                         collapsed={collapsed}
-                        products={productsPerPage}
+                        products={productsInPage}
                     ></ProductCatalog>
                 </div>
 
@@ -91,19 +113,28 @@ const ProductCartWrapper = () => {
                     {getStatusComponent(purchaseStatus)}
                 </div>
             </div>
-            <div className="flex justify-center gap-x-4 py-4">
-                <PrimaryButton
-                    className="!px-16"
-                    background="bg-primary-600"
-                    content="Prev"
-                    onClick={() => handleChangePage(currentPage - 1)}
-                ></PrimaryButton>
-                <PrimaryButton
-                    className="!px-16"
-                    background="bg-primary-600"
-                    content="Next"
-                    onClick={() => handleChangePage(currentPage + 1)}
-                ></PrimaryButton>
+
+            <div className="my-4">
+                <div className="flex w-full items-center justify-center gap-x-4">
+                    <button
+                        className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 bg-white shadow-md"
+                        onClick={() => handleChangePage(currentPage - 1)}
+                    >
+                        <GrCaretPrevious className="text-gray-600" size={20}></GrCaretPrevious>
+                    </button>
+                    <Paging
+                        amount={products.length}
+                        currentPage={currentPage}
+                        perPage={collapsed ? 15 : 9}
+                        handleChangePage={handleChangePage}
+                    ></Paging>
+                    <button
+                        className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 bg-white shadow-md"
+                        onClick={() => handleChangePage(currentPage + 1)}
+                    >
+                        <GrCaretNext className="text-gray-600" size={20}></GrCaretNext>
+                    </button>
+                </div>
             </div>
         </div>
     );

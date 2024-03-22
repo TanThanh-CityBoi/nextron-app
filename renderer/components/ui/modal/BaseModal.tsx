@@ -132,7 +132,7 @@ const BaseModal = ({
             {showModal ? (
                 <>
                     <div
-                        className={`fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-transparent outline-none focus:outline-none`}
+                        className={`modal-show fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-transparent outline-none focus:outline-none`}
                     >
                         <div className={`relative mx-auto my-6 w-auto max-w-3xl bg-transparent`}>
                             <div

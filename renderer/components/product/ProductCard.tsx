@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { IPC_MESSAGE } from '@/common/ipc-message';
+import { useRef } from 'react';
 
 type ProductProps = {
     id: number;
@@ -28,13 +29,22 @@ const DiscountTag = (props: { discount: number }) => {
 const ProductCard = (props: ProductProps) => {
     const { i18n } = useTranslation();
     const lang = i18n.language;
+    const itemRef = useRef(null);
 
     const handleAddToCart = (item) => {
         window.ipc.send(IPC_MESSAGE.ADD_TO_CART, item);
+
+        if (item?.amount > 0) {
+            itemRef.current.classList.add('prod-card-add');
+            setTimeout(() => {
+                itemRef.current.classList.remove('prod-card-add');
+            }, 1000);
+        }
     };
 
     return (
         <div
+            ref={itemRef}
             className="relative h-full w-full rounded-xl bg-white p-2 shadow-lg"
             onClick={() => handleAddToCart({ ...props })}
         >

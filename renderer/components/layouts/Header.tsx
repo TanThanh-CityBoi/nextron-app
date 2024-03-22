@@ -23,10 +23,10 @@ const Header = () => {
                 ></img>
             </div>
 
-            <div className="flex items-center justify-center rounded-xl border border-gray-300 bg-white p-1">
+            <div className="relative flex items-center justify-center rounded-xl border border-gray-300 bg-white p-1">
                 <button
                     className={`flex items-center px-3 py-1.5 ${
-                        lang == LOCALES.vi ? 'bg-primary-200 rounded-lg' : ''
+                        lang == LOCALES.vi ? 'rounded-lg bg-transparent' : ''
                     }`}
                     onClick={() => changeLang(LOCALES.vi)}
                 >
@@ -34,12 +34,24 @@ const Header = () => {
                 </button>
                 <button
                     className={`flex items-center px-3 py-1.5 ${
-                        lang == LOCALES.en ? 'bg-primary-200 rounded-lg' : ''
+                        lang == LOCALES.en ? 'rounded-lg bg-transparent' : ''
                     }`}
                     onClick={() => changeLang(LOCALES.en)}
                 >
                     <Image alt="icon-vi.png" src="/icons/en.png" width={20} height={20}></Image>
                 </button>
+
+                <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full p-1">
+                    <div
+                        className={`bg-transparent ${lang === LOCALES.en ? 'lang-show' : 'lang-hide'}`}
+                        onClick={() => changeLang(LOCALES.vi)}
+                    ></div>
+                    <div className="h-full w-1/2 rounded-lg bg-gray-600 opacity-20"></div>
+                    <div
+                        className={`bg-transparent ${lang === LOCALES.vi ? 'lang-show' : 'lang-hide'}`}
+                        onClick={() => changeLang(LOCALES.en)}
+                    ></div>
+                </div>
             </div>
         </div>
     );

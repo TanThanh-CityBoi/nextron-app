@@ -9,7 +9,7 @@ import { PURCHASE_STATUS } from '@/common/constants';
 
 const ProductCartHeader = (props: {
     collapsed: boolean;
-    setCollapsed: Function;
+    collapToggle: Function;
     purchaseStatus: string;
     setPurchaseStatus: Function;
     cart: CartType;
@@ -45,21 +45,21 @@ const ProductCartHeader = (props: {
     return (
         <div className="grid grid-cols-5">
             <div className={`${props.collapsed ? 'prod-header-show' : 'col-span-3'}`}>
-                <div className="bg-primary-600 line-clamp-1 w-max rounded-e-full px-16 py-2 font-semibold text-gray-100">
+                <div className="from-primary-500 to-primary-700 line-clamp-1 w-max rounded-e-full bg-gradient-to-r px-16 py-2 font-semibold text-gray-100">
                     <h5 className="text-center">{homeT.t('product_list.title')}</h5>
                 </div>
             </div>
             <div
                 className={`${props.collapsed ? 'cart-header-hide' : 'cart-header-show'} relative`}
             >
-                <div className="bg-primary-600 relative w-full py-2 ps-8">
+                <div className="from-primary-500 to-primary-700 relative w-full bg-gradient-to-r py-2 ps-8">
                     <h5 className="line-clamp-1 pe-10 ps-4 text-center font-semibold text-white">
                         {getTitle(props.purchaseStatus)}
                     </h5>
 
                     <button
                         className="bg-primary-600 absolute -left-7 -top-3 z-10 h-16 w-16 rounded-full p-1"
-                        onClick={() => props.setCollapsed(!props.collapsed)}
+                        onClick={() => props.collapToggle(!props.collapsed)}
                     >
                         <span className="flex h-full w-full items-center justify-center rounded-full bg-white">
                             {getIconTitle(props.purchaseStatus)}

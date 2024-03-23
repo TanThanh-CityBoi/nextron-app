@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Header from './Header';
 import Footer from './Footer';
-import { useEffect, useState } from 'react';
-import { IPC_MESSAGE } from '@/common/ipc-message';
 import ModalError from '../ui/modal/ModalError';
-import { useTranslation } from 'react-i18next';
 import ModalSuccess from '../ui/modal/ModalSuccess';
+import { CreateModalPayload, IPC_MESSAGE, ModalType } from '@nextron-app/common';
 
 const MainLayout = ({ children }) => {
     const [showModalError, setShowModalError] = useState(false);
@@ -15,25 +16,17 @@ const MainLayout = ({ children }) => {
     const commonT = useTranslation('common');
 
     useEffect(() => {
-        window.ipc.on(
-            IPC_MESSAGE.NOTIFICATION_MODEL_SHOW,
-            (arg: {
-                message_key?: string;
-                message_sub?: Object;
-                button_key?: string;
-                modal_type: string;
-            }) => {
-                if (arg.modal_type == 'error') {
-                    setErrorMessage(commonT.t(arg.message_key, { ...arg.message_sub }));
-                    setShowModalError(true);
-                }
-                if (arg.modal_type == 'success') {
-                    setSuccessMessage(commonT.t(arg.message_key, { ...arg.message_sub }));
-                    setShowModalSuccess(true);
-                }
-                setButtonTitle(commonT.t(arg.button_key));
-            },
-        );
+        window.ipc.on(IPC_MESSAGE.MODAL_SHOW, (arg: CreateModalPayload) => {
+            if (arg.type == ModalType.ERROR_NOTIFY) {
+                setErrorMessage(commonT.t(arg.sub.messageKey, { ...arg.sub.messageArg }));
+                setShowModalError(true);
+            }
+            if (arg.type == 'SUCCESS_NOTIFY') {
+                setSuccessMessage(commonT.t(arg.sub.messageKey, { ...arg.sub.messageArg }));
+                setShowModalSuccess(true);
+            }
+            setButtonTitle(commonT.t(arg.sub.confirmButtonKey));
+        });
     }, []);
 
     return (

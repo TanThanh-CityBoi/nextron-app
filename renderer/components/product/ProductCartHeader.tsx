@@ -4,20 +4,19 @@ import { useTranslation } from 'react-i18next';
 import { FaMoneyBill } from 'react-icons/fa';
 import { IoQrCodeSharp } from 'react-icons/io5';
 
-import { CartType } from '@/common/type';
-import { PURCHASE_STATUS } from '@/common/constants';
+import { PURCHASE_STATUS, ICart } from '@nextron-app/common';
 
 const ProductCartHeader = (props: {
     collapsed: boolean;
     collapToggle: Function;
     purchaseStatus: string;
     setPurchaseStatus: Function;
-    cart: CartType;
+    cart: ICart;
 }) => {
     const homeT = useTranslation('home');
 
     const titleMapping = {
-        ORDER: homeT.t('cart.order_title', { amount: props.cart?.item_numbers }),
+        ORDER: homeT.t('cart.order_title', { amount: props.cart?.totalItems }),
         CONFIRM_PURCHASE: homeT.t('cart.confirm_title'),
         PAYMENT: homeT.t('cart.payment_title'),
     };

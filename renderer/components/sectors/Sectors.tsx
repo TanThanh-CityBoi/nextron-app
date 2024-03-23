@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { IPC_MESSAGE } from '@/common/ipc-message';
+import { useTranslation } from 'react-i18next';
+import { IPC_MESSAGE } from '@nextron-app/common';
 
 const Sectors = () => {
     const [filterCategories, setFilterCategories] = useState([]);

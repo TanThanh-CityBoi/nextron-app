@@ -1,8 +1,7 @@
 import { app } from 'electron';
 
 import { appEventHandler, createWindow, setAppPath, appSchedule } from '@/main/helpers';
-import { WINDOW_CONFIG } from '@/main/configs';
-import { ENV_CONFIG } from '@/common/env.config';
+import { ENV_CONFIG, WINDOW_CONFIG } from '@/main/configs';
 import ipcEventHandler from '@/main/ipc';
 //
 import * as dotenv from 'dotenv';

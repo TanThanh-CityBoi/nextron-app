@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr';
 
-import { IPC_MESSAGE } from '@/common/ipc-message';
-import { PURCHASE_STATUS } from '@/common/constants';
-import { CartType } from '@/common/type';
+import { IPC_MESSAGE, PURCHASE_STATUS, ICart } from '@nextron-app/common';
 import ConfirmPurchase from '../payment/ConfirmPurchase';
 import ProductCartHeader from './ProductCartHeader';
 import ProductCatalog from './ProductCatalog';
@@ -39,10 +37,10 @@ const ProductCartWrapper = () => {
     const [products, setProducts] = useState([]);
     const [productsInPage, setProductsInPage] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [cart, setCart] = useState<CartType>({
-        item_numbers: 0,
+    const [cart, setCart] = useState<ICart>({
+        totalAmount: 0,
+        totalItems: 0,
         items: [],
-        total: 0,
     });
 
     const collapToggle = (status: boolean) => {
@@ -84,7 +82,7 @@ const ProductCartWrapper = () => {
             setProducts(arg);
             setProductsInPage(items);
         });
-        window.ipc.on(IPC_MESSAGE.GET_CART_ITEMS_REPLY, (arg: any) => {
+        window.ipc.on(IPC_MESSAGE.GET_CART_INFO_REPLY, (arg: any) => {
             setCart(arg);
         });
     }, [collapsed, currentPage]);

@@ -1,60 +1,53 @@
 import { useEffect, useRef, useState } from 'react';
-import PrimaryButton from '../ui/button/PrimaryButton';
-import CartItem from './CartItem';
-import { IPC_MESSAGE } from '@/common/ipc-message';
-import { CartType } from '@/common/type';
-import { PURCHASE_STATUS } from '@/common/constants';
 import { useTranslation } from 'react-i18next';
 
+import {
+    IPC_MESSAGE,
+    scrollToBottom,
+    PURCHASE_STATUS,
+    ICart,
+    CreateModalPayload,
+} from '@nextron-app/common';
+import PrimaryButton from '../ui/button/PrimaryButton';
+import CartItem from './CartItem';
+
 const Cart = (props: { setPurchaseStatus: Function }) => {
-    const [cart, setCart] = useState<CartType>({
-        total: 0,
-        item_numbers: 0,
+    const homeT = useTranslation('home');
+    const commonT = useTranslation('common');
+    const cartItemRef = useRef(null);
+
+    const [cartItemNumbers, setCartItemNumbers] = useState(0);
+    const [cart, setCart] = useState<ICart>({
+        totalAmount: 0,
+        totalItems: 0,
         items: [],
     });
 
-    const homeT = useTranslation('home');
-    const commonT = useTranslation('common');
-
-    const [cartItems, setCartItems] = useState([]);
-    const [preItems, setPreItems] = useState([]);
-
     const handlePayment = () => {
-        if (cart.item_numbers < 1) {
+        if (cart.totalItems < 1) {
             window.ipc.send(IPC_MESSAGE.CREATE_MODAL, {
-                ipc_message: IPC_MESSAGE.NOTIFICATION_MODEL_SHOW,
+                type: 'ERROR_NOTIFY',
                 sub: {
-                    message_key: 'message.empty_cart',
-                    button_key: 'button.close_title',
-                    modal_type: 'error',
+                    messageKey: 'message.empty_cart',
+                    confirmButtonKey: 'button.close_title',
                 },
-            });
+            } as CreateModalPayload);
             return;
         }
         props.setPurchaseStatus(PURCHASE_STATUS.CONFIRM_PURCHASE);
     };
 
-    const cartItemRef = useRef(null);
-
-    const scrollToBottom = () => {
-        cartItemRef.current?.scrollIntoView({
-            block: 'end',
-            behavior: 'smooth',
-        });
-    };
-
     useEffect(() => {
-        if (cartItems.length > preItems.length && cartItems.length > 5) {
-            scrollToBottom();
+        if (cart.items.length > cartItemNumbers && cart.items.length > 5) {
+            scrollToBottom(cartItemRef.current);
         }
-        setPreItems(cartItems);
-    }, [cartItems]);
+        setCartItemNumbers(cart.items.length);
+    }, [cart.items]);
 
     useEffect(() => {
-        window.ipc.send(IPC_MESSAGE.GET_CART_ITEMS, {});
-        window.ipc.on(IPC_MESSAGE.GET_CART_ITEMS_REPLY, (arg: CartType) => {
+        window.ipc.send(IPC_MESSAGE.GET_CART_INFO, {});
+        window.ipc.on(IPC_MESSAGE.GET_CART_INFO_REPLY, (arg: ICart) => {
             setCart(arg);
-            setCartItems(arg?.items || []);
         });
     }, []);
 
@@ -62,7 +55,7 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
         <div className="border-primary-600 flex h-full flex-col justify-between rounded-bl-xl border-b-4 border-s-4 bg-white shadow-xl">
             <div className="h-max max-h-[580px] px-2 py-3">
                 <div className="no-scrollbar h-full overflow-x-scroll">
-                    {cartItems?.map((item, idx) => {
+                    {cart?.items?.map((item, idx) => {
                         return (
                             <div className="px-2" key={idx}>
                                 <CartItem
@@ -83,7 +76,7 @@ const Cart = (props: { setPurchaseStatus: Function }) => {
             <div className="bg-primary-100 flex h-[250px] flex-col justify-between rounded-bl-xl px-4 pb-5 pt-5">
                 <div className="mb-3 flex justify-between">
                     <h5 className="font-semibold">{homeT.t('cart.cart_total')}:</h5>
-                    <h5 className="font-semibold">{cart.total} đ</h5>
+                    <h5 className="font-semibold">{cart.totalAmount} đ</h5>
                 </div>
                 <div className="flex justify-end">
                     <PrimaryButton

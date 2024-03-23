@@ -1,7 +1,7 @@
 import ProductCard from './ProductCard';
-import { ProductType } from '@/common/type';
+import { IProduct } from '@nextron-app/common';
 
-const ProductCatalog = (props: { products: ProductType[]; collapsed: Boolean }) => {
+const ProductCatalog = (props: { products: IProduct[]; collapsed: Boolean }) => {
     //
 
     return (

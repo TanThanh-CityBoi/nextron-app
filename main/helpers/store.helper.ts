@@ -1,4 +1,4 @@
-import { CartType, ProductType } from '@/common/type';
+import { ICart, IProduct } from '@nextron-app/common';
 import Store from 'electron-store';
 
 class StoreHelper extends Store {
@@ -8,23 +8,23 @@ class StoreHelper extends Store {
         });
     }
 
-    public getCart(): CartType {
+    public getCart(): ICart {
         return (this.get('cart') || {
-            total: 0,
-            item_numbers: 0,
+            totalAmount: 0,
+            totalItems: 0,
             items: [],
-        }) as CartType;
+        }) as ICart;
     }
 
-    public setCart(data: CartType) {
+    public setCart(data: ICart) {
         return this.set('cart', data);
     }
 
-    public getProducts(): Array<ProductType> {
-        return this.get('products') as Array<ProductType>;
+    public getProducts(): Array<IProduct> {
+        return this.get('products') as Array<IProduct>;
     }
 
-    public setProducts(data: Array<ProductType>) {
+    public setProducts(data: Array<IProduct>) {
         return this.set('products', data);
     }
 }

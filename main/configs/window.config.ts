@@ -1,4 +1,4 @@
-import { ENV_CONFIG } from '@/common/env.config';
+import { ENV_CONFIG } from './env.config';
 import path from 'path';
 import * as dotenv from 'dotenv';
 dotenv.config(ENV_CONFIG);

@@ -1,8 +1,13 @@
 import { ipcMain } from 'electron';
-import { IPC_MESSAGE } from '@/common/ipc-message';
+import {
+    IPC_MESSAGE,
+    MAX_CART_ITEMS,
+    PURCHASE_STATUS,
+    ModalType,
+    CreateModalPayload,
+} from '@nextron-app/common';
 import { LocalStorage, STORAGE_KEYS } from '@/main/helpers';
 import { products as productList } from '@/mock-data';
-import { MAX_CART_ITEMS, PURCHASE_STATUS } from '@/common/constants';
 
 const filterProduct = (products, categories) => {
     if (!categories || !categories?.length) return products;
@@ -16,7 +21,7 @@ const filterProduct = (products, categories) => {
     return productsFilter;
 };
 
-function productEventHandler() {
+function productIpcHandler() {
     ipcMain.on(IPC_MESSAGE.GET_LIST_PRODUCTS, async (event) => {
         let currentProducts = LocalStorage.getProducts();
         if (!currentProducts || !currentProducts?.length) {
@@ -35,13 +40,15 @@ function productEventHandler() {
         const categories = LocalStorage.get(STORAGE_KEYS.FILTER_PRODUCT_CATEGORIES) || [];
         //
         const cart = LocalStorage.getCart();
-        if (cart.item_numbers === MAX_CART_ITEMS) {
-            event.reply(IPC_MESSAGE.NOTIFICATION_MODEL_SHOW, {
-                message_key: 'message.max_cart_items',
-                message_sub: { max_cart_items: MAX_CART_ITEMS },
-                button_key: 'button.close_title',
-                modal_type: 'error',
-            });
+        if (cart.totalItems === MAX_CART_ITEMS) {
+            event.reply(IPC_MESSAGE.MODAL_SHOW, {
+                type: ModalType.ERROR_NOTIFY,
+                sub: {
+                    messageKey: 'message.max_cart_items',
+                    messageArg: { max_cart_items: MAX_CART_ITEMS },
+                    confirmButtonKey: 'button.close_title',
+                },
+            } as CreateModalPayload);
             return;
         }
         let localProducts = LocalStorage.getProducts();
@@ -69,15 +76,15 @@ function productEventHandler() {
                 thumbnail: localProducts?.[existedIdProducts].thumbnail,
             };
             cart.items[existedId] = newItems;
-            cart.item_numbers = cart.item_numbers + 1;
-            cart.total = cart.total + newItems.price;
+            cart.totalItems = cart.totalItems + 1;
+            cart.totalAmount = cart.totalAmount + newItems.price;
 
             localProducts[existedIdProducts].amount = localProducts?.[existedIdProducts].amount - 1;
 
             LocalStorage.setCart(cart);
             LocalStorage.setProducts(localProducts);
 
-            event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
+            event.reply(IPC_MESSAGE.GET_CART_INFO_REPLY, cart);
             const productFilter = filterProduct(localProducts, categories);
             event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, productFilter);
             return;
@@ -95,15 +102,15 @@ function productEventHandler() {
         };
 
         cart.items.push(newItems);
-        cart.item_numbers = cart.item_numbers + 1;
-        cart.total = cart.total + newItems.price;
+        cart.totalItems = cart.totalItems + 1;
+        cart.totalAmount = cart.totalAmount + newItems.price;
 
         localProducts[existedIdProducts].amount = localProducts?.[existedIdProducts].amount - 1;
 
         LocalStorage.setCart(cart);
         LocalStorage.setProducts(localProducts);
 
-        event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
+        event.reply(IPC_MESSAGE.GET_CART_INFO_REPLY, cart);
         const productFilter = filterProduct(localProducts, categories);
         event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, productFilter);
     });
@@ -128,8 +135,8 @@ function productEventHandler() {
         const existedIdProducts = localProducts.findIndex((item) => item.id === arg.id);
 
         if (existedId !== -1 && existedIdProducts !== -1) {
-            cart.item_numbers = cart.item_numbers - arg.amount;
-            cart.total = cart.total - cart.items[existedId].price * arg.amount;
+            cart.totalItems = cart.totalItems - arg.amount;
+            cart.totalAmount = cart.totalAmount - cart.items[existedId].price * arg.amount;
 
             if (cart.items[existedId].amount == arg.amount) {
                 cart.items = cart.items.filter((val) => val.id !== arg.id);
@@ -143,7 +150,7 @@ function productEventHandler() {
             LocalStorage.setCart(cart);
             LocalStorage.setProducts(localProducts);
 
-            event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
+            event.reply(IPC_MESSAGE.GET_CART_INFO_REPLY, cart);
             const productFilter = filterProduct(localProducts, categories);
             event.reply(IPC_MESSAGE.GET_LIST_PRODUCTS_REPLY, productFilter);
             return;
@@ -152,9 +159,9 @@ function productEventHandler() {
         return;
     });
 
-    ipcMain.on(IPC_MESSAGE.GET_CART_ITEMS, async (event) => {
+    ipcMain.on(IPC_MESSAGE.GET_CART_INFO, async (event) => {
         const cart = LocalStorage.getCart();
-        event.reply(IPC_MESSAGE.GET_CART_ITEMS_REPLY, cart);
+        event.reply(IPC_MESSAGE.GET_CART_INFO_REPLY, cart);
     });
 
     ipcMain.on(IPC_MESSAGE.UPDATE_PURCHASE_STATUS, async (event, arg) => {
@@ -178,4 +185,4 @@ function productEventHandler() {
     });
 }
 
-export default productEventHandler;
+export default productIpcHandler;

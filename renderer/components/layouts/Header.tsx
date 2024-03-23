@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LOCALES } from '@/common/constants';
+import { LOCALES } from '@nextron-app/common';
 
 const Header = () => {
     const { i18n } = useTranslation();

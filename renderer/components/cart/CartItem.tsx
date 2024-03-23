@@ -3,7 +3,7 @@ import { FaMinus } from 'react-icons/fa';
 import { TiDelete } from 'react-icons/ti';
 import { useTranslation } from 'react-i18next';
 
-import { IPC_MESSAGE } from '@/common/ipc-message';
+import { IPC_MESSAGE } from '@nextron-app/common';
 
 const CartItem = (props: {
     id: number;

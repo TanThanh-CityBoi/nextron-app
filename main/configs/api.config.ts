@@ -1,5 +1,5 @@
-import { ENV_CONFIG } from '@/common/env.config';
 import * as dotenv from 'dotenv';
+import { ENV_CONFIG } from './env.config';
 dotenv.config(ENV_CONFIG);
 
 export const API_CONFIG = {

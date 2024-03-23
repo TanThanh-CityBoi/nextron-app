@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { IPC_MESSAGE } from '@/common/ipc-message';
+import { IPC_MESSAGE } from '@nextron-app/common';
 import { useRef } from 'react';
 
 type ProductProps = {
@@ -35,9 +35,9 @@ const ProductCard = (props: ProductProps) => {
         window.ipc.send(IPC_MESSAGE.ADD_TO_CART, item);
 
         if (item?.amount > 0) {
-            itemRef.current.classList.add('prod-card-add');
+            itemRef?.current?.classList?.add('prod-card-add');
             setTimeout(() => {
-                itemRef.current.classList.remove('prod-card-add');
+                itemRef?.current?.classList?.remove('prod-card-add');
             }, 1000);
         }
     };

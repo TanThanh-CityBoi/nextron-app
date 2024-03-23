@@ -1,8 +1,6 @@
-import { PURCHASE_STATUS } from '@/common/constants';
-import { IPC_MESSAGE } from '@/common/ipc-message';
-import { CartType } from '@/common/type';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PURCHASE_STATUS, IPC_MESSAGE, ICart } from '@nextron-app/common';
 
 const PaymentMethod = (props: {
     id: number;
@@ -30,7 +28,7 @@ const PaymentMethod = (props: {
     );
 };
 
-const ConfirmPurchase = (props: { cart: CartType; setPurchaseStatus: Function }) => {
+const ConfirmPurchase = (props: { cart: ICart; setPurchaseStatus: Function }) => {
     const homeT = useTranslation('home');
     const [paymentMethods, setPaymentMethods] = useState([]);
     useEffect(() => {
@@ -45,7 +43,7 @@ const ConfirmPurchase = (props: { cart: CartType; setPurchaseStatus: Function })
             <div className="p-4">
                 <div className="mb-3 flex justify-between">
                     <h5 className="font-semibold">{homeT.t('cart.cart_total')}</h5>
-                    <h5 className="font-semibold">{props.cart.total} đ</h5>
+                    <h5 className="font-semibold">{props.cart.totalAmount} đ</h5>
                 </div>
                 <div className="flex flex-col gap-y-3">
                     <h5 className="mb-4">{homeT.t('cart.payment_method')}</h5>

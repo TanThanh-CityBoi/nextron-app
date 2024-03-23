@@ -1,12 +1,12 @@
 import schedule from 'node-schedule';
 import { powerMonitor } from 'electron';
-import { ENV_CONFIG } from '@/common/env.config';
+import { ENV_CONFIG } from '@/main/configs';
 
 import * as dotenv from 'dotenv';
 import { LocalStorage, STORAGE_KEYS } from './store.helper';
-import { CronExpression } from '@/common/cron-expression.enum';
-import { SLEEP_TIMEOUT } from '@/common/constants';
+import { SLEEP_TIMEOUT, CronExpression } from '@nextron-app/common';
 dotenv.config(ENV_CONFIG);
+
 //
 const isProd = process.env.NODE_ENV === 'production';
 

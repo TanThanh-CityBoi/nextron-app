@@ -1,9 +1,9 @@
 import i18n from '@/translation/i18n';
 import { I18nextProvider } from 'react-i18next';
+import { IPC_MESSAGE } from '@nextron-app/common';
 
 import '../styles/globals.css';
 import { useEffect } from 'react';
-import { IPC_MESSAGE } from '@/common/ipc-message';
 
 function MyApp({ Component, pageProps }) {
     const getLayout = Component.getLayout || ((page) => page);

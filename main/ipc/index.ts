@@ -1,13 +1,13 @@
-import appIpcEventHandler from './app.ipc';
-import categoryIpcEventHandler from './category.ipc';
-import paymentIpcEventHandler from './payment.ipc';
-import productEventHandler from './product.ipc';
+import appIpcHandler from './app.ipc';
+import categoryIpcHandler from './category.ipc';
+import paymentIpcHandler from './payment.ipc';
+import productIpcHandler from './product.ipc';
 
 function ipcEventHandler() {
-    productEventHandler();
-    appIpcEventHandler();
-    categoryIpcEventHandler();
-    paymentIpcEventHandler();
+    appIpcHandler();
+    productIpcHandler();
+    categoryIpcHandler();
+    paymentIpcHandler();
 }
 
 export default ipcEventHandler;

@@ -6,24 +6,39 @@ import Footer from './Footer';
 import ModalError from '../ui/modal/ModalError';
 import ModalSuccess from '../ui/modal/ModalSuccess';
 import { CreateModalPayload, IPC_MESSAGE, ModalType } from '@nextron-app/common';
+import LogoutModal from '../ui/modal/LogoutModal';
+import { useRouter } from 'next/router';
 
 const MainLayout = ({ children }) => {
+    const router = useRouter();
+
     const [showModalError, setShowModalError] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
+    //
     const [successMessage, setSuccessMessage] = useState(null);
     const [showModalSuccess, setShowModalSuccess] = useState(false);
+    //
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
+    //
     const [buttonTitle, setButtonTitle] = useState(null);
     const commonT = useTranslation('common');
 
+    const handleLogout = () => {
+        router.push('/login', '/login');
+    };
+
     useEffect(() => {
         window.ipc.on(IPC_MESSAGE.MODAL_SHOW, (arg: CreateModalPayload) => {
-            if (arg.type == ModalType.ERROR_NOTIFY) {
+            if (arg.type === ModalType.ERROR_NOTIFY) {
                 setErrorMessage(commonT.t(arg.sub.messageKey, { ...arg.sub.messageArg }));
                 setShowModalError(true);
             }
-            if (arg.type == 'SUCCESS_NOTIFY') {
+            if (arg.type === ModalType.SUCCESS_NOTIFY) {
                 setSuccessMessage(commonT.t(arg.sub.messageKey, { ...arg.sub.messageArg }));
                 setShowModalSuccess(true);
+            }
+            if (arg.type === ModalType.LOGOUT) {
+                setShowLogoutModal(true);
             }
             setButtonTitle(commonT.t(arg.sub.confirmButtonKey));
         });
@@ -56,6 +71,12 @@ const MainLayout = ({ children }) => {
                 buttonTitle={buttonTitle || ''}
                 message={successMessage || ''}
             ></ModalSuccess>
+
+            <LogoutModal
+                setShowModal={setShowLogoutModal}
+                handleOk={() => handleLogout()}
+                showModal={showLogoutModal}
+            ></LogoutModal>
         </div>
     );
 };

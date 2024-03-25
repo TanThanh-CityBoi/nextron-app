@@ -22,6 +22,8 @@
         "payment_success": "Thanh toán thành công"
     },
     "button": {
-        "close_title": "Đóng"
+        "close_title": "Đóng",
+        "logout_title": "Đăng xuất",
+        "cancel_title": "Hủy"
     }
 }

@@ -31,15 +31,17 @@
         ]
     },
     "dependencies": {
+        "@nextron-app/common": "./common",
         "axios": "^1.6.7",
         "electron-serve": "^1.3.0",
         "electron-store": "^8.1.0",
+        "formik": "^2.4.5",
         "i18next": "^23.10.1",
         "i18next-http-backend": "^2.5.0",
         "node-schedule": "^2.1.1",
         "react-i18next": "^14.1.0",
         "react-icons": "^5.0.1",
-        "@nextron-app/common": "./common"
+        "yup": "^1.4.0"
     },
     "devDependencies": {
         "@types/node": "^20.11.16",

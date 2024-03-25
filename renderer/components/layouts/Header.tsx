@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LOCALES } from '@nextron-app/common';
+import { CreateModalPayload, IPC_MESSAGE, LOCALES, ModalType } from '@nextron-app/common';
 
 const Header = () => {
     const { i18n } = useTranslation();
@@ -15,7 +15,14 @@ const Header = () => {
 
     return (
         <div className="py-auto flex h-full items-center justify-between px-6 py-2 shadow-md">
-            <div className="relative aspect-video h-20 px-2">
+            <div
+                className="relative aspect-video h-20 px-2"
+                onDoubleClick={() => {
+                    window.ipc.send(IPC_MESSAGE.CREATE_MODAL, {
+                        type: ModalType.LOGOUT,
+                    } as CreateModalPayload);
+                }}
+            >
                 <img
                     className="absolute h-full w-full"
                     src="/images/logo-2.png"

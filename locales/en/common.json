@@ -22,6 +22,8 @@
         "payment_success": "Payment Success"
     },
     "button": {
-        "close_title": "Close"
+        "close_title": "Close",
+        "logout_title": "Logout",
+        "cancel_title": "Cancel"
     }
 }

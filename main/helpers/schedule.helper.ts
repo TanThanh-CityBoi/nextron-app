@@ -29,10 +29,10 @@ const appSchedule = (mainWindow) => {
 
         if (current - lastActionTime > SLEEP_TIMEOUT * 1000) {
             if (isProd) {
-                await mainWindow.loadURL('app://./sleep-page');
+                await mainWindow.loadURL('app://./sleep');
             } else {
                 const port = process.argv[2];
-                await mainWindow.loadURL(`http://localhost:${port}/sleep-page`);
+                await mainWindow.loadURL(`http://localhost:${port}/sleep`);
             }
             LocalStorage.clear();
         }

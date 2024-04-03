@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import Header from './Header';
-import Footer from './Footer';
-import ModalError from '../ui/modal/ModalError';
-import ModalSuccess from '../ui/modal/ModalSuccess';
-import { CreateModalPayload, IPC_MESSAGE, ModalType } from '@nextron-app/common';
-import LogoutModal from '../ui/modal/LogoutModal';
-import { useRouter } from 'next/router';
+import Header from "./Header";
+import Footer from "./Footer";
+import ModalError from "../ui/modal/ModalError";
+import ModalSuccess from "../ui/modal/ModalSuccess";
+import { CreateModalPayload, IPC_MESSAGE, ModalType } from "@nextron-app/common";
+import LogoutModal from "../ui/modal/LogoutModal";
+import { useRouter } from "next/router";
 
 const MainLayout = ({ children }) => {
     const router = useRouter();
@@ -21,10 +21,10 @@ const MainLayout = ({ children }) => {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     //
     const [buttonTitle, setButtonTitle] = useState(null);
-    const commonT = useTranslation('common');
+    const commonT = useTranslation("common");
 
     const handleLogout = () => {
-        router.push('/login', '/login');
+        router.push("/login", "/login");
     };
 
     useEffect(() => {
@@ -32,27 +32,27 @@ const MainLayout = ({ children }) => {
             if (arg.type === ModalType.ERROR_NOTIFY) {
                 setErrorMessage(commonT.t(arg.sub.messageKey, { ...arg.sub.messageArg }));
                 setShowModalError(true);
+                setButtonTitle(commonT.t(arg.sub.confirmButtonKey));
             }
             if (arg.type === ModalType.SUCCESS_NOTIFY) {
                 setSuccessMessage(commonT.t(arg.sub.messageKey, { ...arg.sub.messageArg }));
                 setShowModalSuccess(true);
+                setButtonTitle(commonT.t(arg.sub.confirmButtonKey));
             }
             if (arg.type === ModalType.LOGOUT) {
                 setShowLogoutModal(true);
             }
-            setButtonTitle(commonT.t(arg.sub.confirmButtonKey));
         });
     }, []);
-
     return (
-        <div className="bg-primary-50 grid min-h-[100vh] grid-flow-col grid-rows-10 gap-4">
-            <div className="bg-primary-100 row-span-1">
+        <div className="grid min-h-[100vh] grid-flow-col grid-rows-12">
+            <div className="row-span-1 pb-1">
                 <Header></Header>
             </div>
 
-            <main className="row-span-6">{children}</main>
+            <main className="row-span-7">{children}</main>
 
-            <div className="row-span-3">
+            <div className="row-span-4">
                 <Footer></Footer>
             </div>
 
@@ -60,16 +60,16 @@ const MainLayout = ({ children }) => {
                 showModal={showModalError}
                 setShowModal={setShowModalError}
                 className="h-[500px] w-[700px]"
-                buttonTitle={buttonTitle || ''}
-                message={errorMessage || ''}
+                buttonTitle={buttonTitle || ""}
+                message={errorMessage || ""}
             ></ModalError>
 
             <ModalSuccess
                 showModal={showModalSuccess}
                 setShowModal={setShowModalSuccess}
                 className="h-[500px] w-[700px]"
-                buttonTitle={buttonTitle || ''}
-                message={successMessage || ''}
+                buttonTitle={buttonTitle || ""}
+                message={successMessage || ""}
             ></ModalSuccess>
 
             <LogoutModal

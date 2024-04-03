@@ -1,10 +1,10 @@
-import { RiArrowGoBackFill } from 'react-icons/ri';
-import { FaCartShopping } from 'react-icons/fa6';
-import { useTranslation } from 'react-i18next';
-import { FaMoneyBill } from 'react-icons/fa';
-import { IoQrCodeSharp } from 'react-icons/io5';
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { FaCartShopping } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
+import { FaMoneyBill } from "react-icons/fa";
+import { IoQrCodeSharp } from "react-icons/io5";
 
-import { PURCHASE_STATUS, ICart } from '@nextron-app/common';
+import { PURCHASE_STATUS, ICart } from "@nextron-app/common";
 
 const ProductCartHeader = (props: {
     collapsed: boolean;
@@ -13,15 +13,15 @@ const ProductCartHeader = (props: {
     setPurchaseStatus: Function;
     cart: ICart;
 }) => {
-    const homeT = useTranslation('home');
+    const homeT = useTranslation("home");
 
     const titleMapping = {
-        ORDER: homeT.t('cart.order_title', { amount: props.cart?.totalItems }),
-        CONFIRM_PURCHASE: homeT.t('cart.confirm_title'),
-        PAYMENT: homeT.t('cart.payment_title'),
+        ORDER: homeT.t("cart.order_title", { amount: props.cart?.totalItems }),
+        CONFIRM_PURCHASE: homeT.t("cart.confirm_title"),
+        PAYMENT: homeT.t("cart.payment_title"),
     };
     const getTitle = (key: string) => {
-        return titleMapping?.[key] || '';
+        return titleMapping?.[key] || "";
     };
 
     const iconTitleMapping = {
@@ -30,7 +30,7 @@ const ProductCartHeader = (props: {
         PAYMENT: <IoQrCodeSharp className="text-primary-600" size={25} />,
     };
     const getIconTitle = (key: string) => {
-        return iconTitleMapping?.[key] || '';
+        return iconTitleMapping?.[key] || "";
     };
 
     const getBack = (key: string) => {
@@ -43,13 +43,13 @@ const ProductCartHeader = (props: {
 
     return (
         <div className="grid grid-cols-5">
-            <div className={`${props.collapsed ? 'prod-header-show' : 'col-span-3'}`}>
+            <div className={`${props.collapsed ? "prod-header-show" : "col-span-3"}`}>
                 <div className="from-primary-500 to-primary-700 line-clamp-1 w-max rounded-e-full bg-gradient-to-r px-16 py-2 font-semibold text-gray-100">
-                    <h5 className="text-center">{homeT.t('product_list.title')}</h5>
+                    <h5 className="text-center">{homeT.t("product_list.title")}</h5>
                 </div>
             </div>
             <div
-                className={`${props.collapsed ? 'cart-header-hide' : 'cart-header-show'} relative`}
+                className={`${props.collapsed ? "cart-header-hide" : "cart-header-show"} relative`}
             >
                 <div className="from-primary-500 to-primary-700 relative w-full bg-gradient-to-r py-2 ps-8">
                     <h5 className="line-clamp-1 pe-10 ps-4 text-center font-semibold text-white">
@@ -57,7 +57,7 @@ const ProductCartHeader = (props: {
                     </h5>
 
                     <button
-                        className="bg-primary-600 absolute -left-7 -top-3 z-10 h-16 w-16 rounded-full p-1"
+                        className="bg-primary-600 absolute -left-4 -top-3 z-10 h-16 w-16 rounded-full p-1"
                         onClick={() => props.collapToggle(!props.collapsed)}
                     >
                         <span className="flex h-full w-full items-center justify-center rounded-full bg-white">

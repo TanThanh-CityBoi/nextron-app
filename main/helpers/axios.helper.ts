@@ -1,6 +1,6 @@
-import axios from 'axios';
-import Store from 'electron-store';
-import { API_CONFIG } from '@/main/configs';
+import axios from "axios";
+import Store from "electron-store";
+import { API_CONFIG } from "@/main/configs";
 
 const axiosInstance = () => {
     const ELECTRON_STORAGE = new Store();
@@ -8,8 +8,8 @@ const axiosInstance = () => {
         baseURL: API_CONFIG.API_URL,
         withCredentials: true,
         headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${ELECTRON_STORAGE.get('access-token')}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${ELECTRON_STORAGE.get("access-token")}`,
         },
     });
 
@@ -19,8 +19,8 @@ const axiosInstance = () => {
         },
         async (error) => {
             const originalRequest: any = error.config;
-            const REFRESH_URL = 'api/auth/refresh-token';
-            const LOGIN_URL = 'api/auth/login';
+            const REFRESH_URL = "api/auth/refresh-token";
+            const LOGIN_URL = "api/auth/login";
 
             // refresh token
             if (
@@ -29,8 +29,8 @@ const axiosInstance = () => {
                 error?.config?.url !== LOGIN_URL &&
                 (!error?.config?.retryCount || error?.config?.retryCount < 2)
             ) {
-                const currentUser: any = ELECTRON_STORAGE.get('current-user');
-                const refreshToken = ELECTRON_STORAGE.get('refresh-token');
+                const currentUser: any = ELECTRON_STORAGE.get("current-user");
+                const refreshToken = ELECTRON_STORAGE.get("refresh-token");
                 if (!error.config?.retryCount) error.config.retryCount = 0;
                 error.config.retryCount++;
 
@@ -43,16 +43,16 @@ const axiosInstance = () => {
                         },
                         {
                             headers: {
-                                'Content-Type': 'application/json',
+                                "Content-Type": "application/json",
                                 Authorization: `Bearer ${refreshToken}`,
                             },
                         },
                     );
                     const access_token = res?.data?.access_token;
-                    ELECTRON_STORAGE.set('access-token');
+                    ELECTRON_STORAGE.set("access-token");
 
                     originalRequest.headers = {
-                        'Content-Type': 'application/json',
+                        "Content-Type": "application/json",
                         Authorization: `Bearer ${access_token}`,
                     };
                     originalRequest._retry = true;
@@ -60,14 +60,14 @@ const axiosInstance = () => {
                     return instance(originalRequest);
                 } catch (err) {
                     originalRequest._retry = false;
-                    ELECTRON_STORAGE.reset('access-token');
-                    ELECTRON_STORAGE.reset('refresh-token');
-                    ELECTRON_STORAGE.reset('current-user');
+                    ELECTRON_STORAGE.reset("access-token");
+                    ELECTRON_STORAGE.reset("refresh-token");
+                    ELECTRON_STORAGE.reset("current-user");
                 }
             }
             const getMessage: any = {
-                500: 'Internal Server Error',
-                404: 'Sorry! the data you are looking for could not be found',
+                500: "Internal Server Error",
+                404: "Sorry! the data you are looking for could not be found",
             };
             const message =
                 error?.response?.data?.message || // error from data response

@@ -58,6 +58,7 @@ p {
 
     .small-scrollbar::-webkit-scrollbar {
       width: 5px;
+      height: 5px;
     }
 
     .small-scrollbar::-webkit-scrollbar-thumb {
@@ -71,5 +72,7 @@ p {
   margin: 0;
 }
 
-
-
+.flare {
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+  cursor: none !important; 
+}

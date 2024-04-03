@@ -1,13 +1,13 @@
-import { ipcMain } from 'electron';
+import { ipcMain } from "electron";
 import {
     IPC_MESSAGE,
     MAX_CART_ITEMS,
     PURCHASE_STATUS,
     ModalType,
     CreateModalPayload,
-} from '@nextron-app/common';
-import { LocalStorage, STORAGE_KEYS } from '@/main/helpers';
-import { products as productList } from '@/mock-data';
+} from "@nextron-app/common";
+import { LocalStorage, STORAGE_KEYS } from "@/main/helpers";
+import { products as productList } from "@/mock-data";
 
 const filterProduct = (products, categories) => {
     if (!categories || !categories?.length) return products;
@@ -44,9 +44,9 @@ function productIpcHandler() {
             event.reply(IPC_MESSAGE.MODAL_SHOW, {
                 type: ModalType.ERROR_NOTIFY,
                 sub: {
-                    messageKey: 'message.max_cart_items',
+                    messageKey: "message.max_cart_items",
                     messageArg: { max_cart_items: MAX_CART_ITEMS },
-                    confirmButtonKey: 'button.close_title',
+                    confirmButtonKey: "button.close_title",
                 },
             } as CreateModalPayload);
             return;

@@ -8,7 +8,6 @@ type SubProps = {
 const SecondaryButton = ({
     className,
     background,
-    fontSize,
     icon,
     content,
     ...props
@@ -16,12 +15,11 @@ const SecondaryButton = ({
     return (
         <>
             <button
-                className={`flex items-center justify-center rounded-lg 
-                leading-6 text-black-100 font-normal whitespace-nowrap 
-                border border-gray-300 px-4 py-2
+                className={`text-black-100 flex items-center justify-center 
+                whitespace-nowrap rounded-lg border border-gray-300 
+                px-4 py-2 font-normal leading-6
             ${className} 
-            ${background || 'hover:bg-gray-200'}
-            ${fontSize || 'lg:text-base text-sm'}
+            ${background || "hover:bg-gray-200"}
             `}
                 {...props}
             >

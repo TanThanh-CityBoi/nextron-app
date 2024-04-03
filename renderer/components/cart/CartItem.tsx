@@ -1,9 +1,9 @@
-import { FaPlus } from 'react-icons/fa';
-import { FaMinus } from 'react-icons/fa';
-import { TiDelete } from 'react-icons/ti';
-import { useTranslation } from 'react-i18next';
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
+import { useTranslation } from "react-i18next";
 
-import { IPC_MESSAGE } from '@nextron-app/common';
+import { IPC_MESSAGE } from "@nextron-app/common";
 
 const CartItem = (props: {
     id: number;
@@ -13,7 +13,7 @@ const CartItem = (props: {
     amount: number;
     thumbnail: string;
 }) => {
-    const commonT = useTranslation('common');
+    const commonT = useTranslation("common");
     const lang = commonT.i18n.language;
 
     const addItem = (id) => {
@@ -27,7 +27,7 @@ const CartItem = (props: {
     return (
         <div
             id={`cart-item-${props.id}`}
-            className="cart-item-show relative my-3 flex items-center gap-x-4 rounded-xl border border-gray-200 bg-white px-4 py-1 shadow-md"
+            className="cart-item-show relative my-3 flex items-center gap-x-4 rounded-tr-2xl rounded-bl-2xl border border-gray-200 bg-white px-4 py-1 shadow-md"
         >
             <div className="relative aspect-square h-20 w-20">
                 <img
@@ -39,10 +39,10 @@ const CartItem = (props: {
             <div>
                 <h6 className="line-clamp-1 font-bold leading-6">{props?.[`name_${lang}`]}</h6>
                 <h6 className="line-clamp-1 font-semibold leading-6">
-                    {commonT.t('cart.cart_item.price')}: {props.price} đ
+                    {commonT.t("cart.cart_item.price")}: {props.price} đ
                 </h6>
                 <div className="flex gap-x-4 py-1 font-semibold text-gray-400">
-                    <h6 className="line-clamp-1">{commonT.t('cart.cart_item.amount')}: </h6>
+                    <h6 className="line-clamp-1">{commonT.t("cart.cart_item.amount")}: </h6>
                     <div className="flex">
                         <button
                             className="bg-primary-300 rounded-sm px-2 py-1"
@@ -54,8 +54,9 @@ const CartItem = (props: {
                             type="number"
                             max={5}
                             value={props.amount}
+                            disabled={true}
                             onChange={() => {}}
-                            className="hide-arrows-input w-10 border border-gray-200 text-center text-lg"
+                            className="hide-arrows-input w-10 border border-gray-200 text-center text-lg focus-visible:outline-none"
                         />
                         <button
                             className="bg-primary-300 rounded-sm px-2 py-1"
@@ -67,9 +68,9 @@ const CartItem = (props: {
                 </div>
             </div>
 
-            <div className="absolute -right-3 -top-4">
+            <div className="absolute rounded-full right-0 top-0 h-8 w-8 flex justify-center items-center">
                 <button onClick={() => removeItem({ id: props.id, amount: props.amount })}>
-                    <TiDelete className="text-primary-500" size={35} />
+                    <TiDelete className="text-primary-500" size={32} />
                 </button>
             </div>
         </div>

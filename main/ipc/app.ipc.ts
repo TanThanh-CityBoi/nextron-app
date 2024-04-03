@@ -1,6 +1,6 @@
-import { ipcMain } from 'electron';
-import { LocalStorage, STORAGE_KEYS } from '../helpers';
-import { CreateModalPayload, IPC_MESSAGE } from '@nextron-app/common';
+import { ipcMain } from "electron";
+import { LocalStorage, STORAGE_KEYS } from "../helpers";
+import { CreateModalPayload, IPC_MESSAGE } from "@nextron-app/common";
 
 function appIpcHandler() {
     ipcMain.on(IPC_MESSAGE.CREATE_MODAL, async (event, arg: CreateModalPayload) => {

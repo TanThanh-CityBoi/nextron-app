@@ -1,25 +1,26 @@
-import { ENV_CONFIG } from './env.config';
-import path from 'path';
-import * as dotenv from 'dotenv';
+import { ENV_CONFIG } from "./env.config";
+import path from "path";
+import * as dotenv from "dotenv";
 dotenv.config(ENV_CONFIG);
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === "production";
 
 const PROD_CONFIG: Electron.BrowserWindowConstructorOptions = {
     fullscreen: true,
     alwaysOnTop: true,
-    titleBarStyle: 'hidden',
+    titleBarStyle: "hidden",
 
     webPreferences: {
         nodeIntegration: true,
-        preload: path.join(__dirname, 'preload.js'),
+        preload: path.join(__dirname, "preload.js"),
     },
 };
 
 const DEV_CONFIG: Electron.BrowserWindowConstructorOptions = {
+    titleBarStyle: "hidden",
     webPreferences: {
         nodeIntegration: true,
-        preload: path.join(__dirname, 'preload.js'),
+        preload: path.join(__dirname, "preload.js"),
     },
 };
 

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { PURCHASE_STATUS, IPC_MESSAGE, ICart } from '@nextron-app/common';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { PURCHASE_STATUS, IPC_MESSAGE, ICart } from "@nextron-app/common";
 
 const PaymentMethod = (props: {
     id: number;
@@ -29,7 +29,7 @@ const PaymentMethod = (props: {
 };
 
 const ConfirmPurchase = (props: { cart: ICart; setPurchaseStatus: Function }) => {
-    const homeT = useTranslation('home');
+    const homeT = useTranslation("home");
     const [paymentMethods, setPaymentMethods] = useState([]);
     useEffect(() => {
         window.ipc.send(IPC_MESSAGE.GET_PAYMENT_METHODS, {});
@@ -42,11 +42,11 @@ const ConfirmPurchase = (props: { cart: ICart; setPurchaseStatus: Function }) =>
         <div className="border-primary-600 flex h-full flex-col justify-between rounded-bl-xl border-b-4 border-s-4 bg-white px-3 shadow-2xl">
             <div className="p-4">
                 <div className="mb-3 flex justify-between">
-                    <h5 className="font-semibold">{homeT.t('cart.cart_total')}</h5>
+                    <h5 className="font-semibold">{homeT.t("cart.cart_total")}</h5>
                     <h5 className="font-semibold">{props.cart.totalAmount} đ</h5>
                 </div>
                 <div className="flex flex-col gap-y-3">
-                    <h5 className="mb-4">{homeT.t('cart.payment_method')}</h5>
+                    <h5 className="mb-4">{homeT.t("cart.payment_method")}</h5>
                     {paymentMethods.map((item, idx) => {
                         return (
                             <div key={idx}>

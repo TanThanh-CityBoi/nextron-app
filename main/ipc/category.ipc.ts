@@ -1,6 +1,6 @@
-import { ipcMain } from 'electron';
-import { IPC_MESSAGE } from '@nextron-app/common';
-import { sectors } from '@/mock-data';
+import { ipcMain } from "electron";
+import { IPC_MESSAGE } from "@nextron-app/common";
+import { sectors } from "@/mock-data";
 
 function categoryIpcHandler() {
     ipcMain.on(IPC_MESSAGE.GET_LIST_CATEGORIES, (event) => {

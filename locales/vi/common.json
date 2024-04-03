@@ -14,6 +14,10 @@
             "modal_content": "Nội dung",
             "cancel_button": "Hủy",
             "confirm_button": "Xác Nhận"
+        },
+        "logout_modal": {
+            "title": "Đăng Xuất Thiết Bị",
+            "input_title": "Mã Thiết Bị"
         }
     },
     "message": {
@@ -24,6 +28,13 @@
     "button": {
         "close_title": "Đóng",
         "logout_title": "Đăng xuất",
+        "login_title": "Đăng Nhập",
         "cancel_title": "Hủy"
+    },
+    "login": {
+        "form_title": "Đăng Nhập",
+        "username": "Tên đăng nhập",
+        "password": "Mật khẩu",
+        "device_id": "Mã thiết bị"
     }
 }

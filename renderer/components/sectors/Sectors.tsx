@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { IPC_MESSAGE } from '@nextron-app/common';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { IPC_MESSAGE } from "@nextron-app/common";
 
 const Sectors = () => {
     const [filterCategories, setFilterCategories] = useState([]);
@@ -24,13 +24,15 @@ const Sectors = () => {
     }, []);
 
     return (
-        <div className="flex gap-5 px-4 py-2">
+        <div className="flex gap-5 px-4 py-4">
             {listCategories.map((item, id) => {
                 return (
                     <button
                         key={id}
                         onClick={() => handleFilter(item.id)}
-                        className={`flex items-center rounded-full p-1 shadow-lg ${filterCategories.includes(item.id) ? 'bg-primary-200' : 'bg-white'}`}
+                        className={`flex items-center rounded-full px-2 py-2 
+                        shadow-[0_3px_6px_rgba(0,0,0,0.16),0_3px_6px_rgba(0,0,0,0.23)] 
+                        ${filterCategories.includes(item.id) ? "bg-primary-200" : "bg-white"}`}
                     >
                         <div className="relative aspect-square min-h-10 min-w-10 rounded-full">
                             <img

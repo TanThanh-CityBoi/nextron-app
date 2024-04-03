@@ -1,7 +1,7 @@
-import { Fragment } from 'react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { MdTouchApp } from 'react-icons/md';
+import { Fragment } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { MdTouchApp } from "react-icons/md";
 
 function SleepPage() {
     const router = useRouter();
@@ -13,7 +13,7 @@ function SleepPage() {
             <div
                 className="bg-primary-100 flex h-screen w-full items-center"
                 onClick={() => {
-                    router.push('/login', '/login');
+                    router.push("/login", "/login");
                 }}
             >
                 <div className="w-full py-20">

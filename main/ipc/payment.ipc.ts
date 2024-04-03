@@ -1,6 +1,6 @@
-import { ipcMain } from 'electron';
-import { IPC_MESSAGE } from '@nextron-app/common';
-import { paymentMethods } from '@/mock-data';
+import { ipcMain } from "electron";
+import { IPC_MESSAGE } from "@nextron-app/common";
+import { paymentMethods } from "@/mock-data";
 
 function paymentIpcHandler() {
     ipcMain.on(IPC_MESSAGE.GET_PAYMENT_METHODS, (event) => {

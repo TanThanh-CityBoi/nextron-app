@@ -1,9 +1,9 @@
 {
     "private": false,
-    "name": "my-nextron-app",
-    "description": "My application description",
-    "version": "1.0.0",
-    "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+    "name": "vendor-machine",
+    "description": "Desktop vendor machine ui",
+    "version": "1.0.1",
+    "author": "CoreVision",
     "main": "app/background.js",
     "license": "UNLICENSED",
     "scripts": {
@@ -21,13 +21,11 @@
         "husky:init": "npx husky-init",
         "lint:staged": "lint-staged",
         "lint": "eslint \"{main,renderer,common}/**/*.{js,jsx,ts,tsx}\" --fix",
-        "format": "prettier \"{main,renderer,common}/**/*.{js,jsx,ts,tsx}\" --write",
         "prepare": "husky && husky install"
     },
     "lint-staged": {
         "*.{ts,tsx,js,jsx}": [
-            "eslint --fix",
-            "prettier --write"
+            "eslint --fix"
         ]
     },
     "dependencies": {
@@ -44,6 +42,9 @@
         "yup": "^1.4.0"
     },
     "devDependencies": {
+        "@commitlint/cli": "^19.2.1",
+        "@commitlint/config-conventional": "^19.1.0",
+        "@commitlint/cz-commitlint": "^19.2.0",
         "@types/node": "^20.11.16",
         "@types/react": "^18.2.52",
         "@typescript-eslint/eslint-plugin": "^7.1.1",
@@ -54,12 +55,12 @@
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-react": "^7.34.0",
+        "eslint-plugin-sort-class-members": "^1.20.0",
         "husky": "^8.0.0",
         "lint-staged": "^15.2.2",
         "next": "^13.5.4",
         "nextron": "^8.13.0",
         "postcss": "^8.4.30",
-        "prettier": "^3.2.5",
         "prettier-plugin-tailwindcss": "^0.5.12",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -67,10 +68,12 @@
         "typescript": "^5.3.3"
     },
     "build": {
+        "productName": "Vendor Machine",
         "extraResources": [
             ".env"
         ],
         "win": {
+            "artifactName": "VendorMachine.setup.${version}.exe",
             "icon": "resources/app-icon.png"
         }
     }

@@ -1,8 +1,8 @@
-import { AiOutlineIssuesClose } from 'react-icons/ai';
-import PrimaryButton from '../button/PrimaryButton';
-import BaseModal from './BaseModal';
-import { ReactElement } from 'react';
-import { useTranslation } from 'react-i18next';
+import { AiOutlineIssuesClose } from "react-icons/ai";
+import PrimaryButton from "../button/PrimaryButton";
+import BaseModal from "./BaseModal";
+import { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 
 type ModalSuccessProps = {
     showModal: boolean;
@@ -14,7 +14,7 @@ type ModalSuccessProps = {
 };
 
 const ModalSuccess = ({ ...props }: React.AllHTMLAttributes<ReactElement> & ModalSuccessProps) => {
-    const commonT = useTranslation('common');
+    const commonT = useTranslation("common");
 
     const handleCancel = () => {
         if (props?.handleCancel) {
@@ -36,28 +36,28 @@ const ModalSuccess = ({ ...props }: React.AllHTMLAttributes<ReactElement> & Moda
             <BaseModal
                 showModal={props.showModal}
                 setShowModal={props.setShowModal}
-                className="h-[500px] w-[600px] bg-green-600"
+                className="h-[450px] w-[550px] bg-green-600"
                 handleOk={() => handleOk()}
                 handleCancel={() => handleCancel()}
                 disableHeader={true}
                 disableToggle={false}
                 footer={
-                    <div className="flex justify-center py-10">
+                    <div className="flex justify-center pb-10">
                         <PrimaryButton
                             type="button"
                             content={
-                                props?.buttonTitle || commonT.t('modal.base_modal.confirm_button')
+                                props?.buttonTitle || commonT.t("modal.base_modal.confirm_button")
                             }
                             icon={<AiOutlineIssuesClose className="me-2 text-2xl" />}
                             className="min-w-[200px] px-8 py-4 text-xl !font-semibold"
-                            background="bg-yellow-300"
+                            background="bg-yellow-500"
                             onClick={() => handleOk()}
                         />
                     </div>
                 }
             >
-                <div className="h-full py-10">
-                    <div className="flex justify-center py-10">
+                <div className="flex h-full flex-col items-center justify-center py-5">
+                    <div className="flex justify-center py-5">
                         <div className="aspect-square h-40 rounded-full bg-white py-5 pe-3 ps-6">
                             <img
                                 alt="success-icon.img"

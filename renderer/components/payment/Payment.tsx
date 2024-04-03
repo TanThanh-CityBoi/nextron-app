@@ -1,12 +1,12 @@
-import { IPC_MESSAGE, CreateModalPayload } from '@nextron-app/common';
+import { IPC_MESSAGE, CreateModalPayload } from "@nextron-app/common";
 
 const Payment = () => {
     const handlePayment = () => {
         window.ipc.send(IPC_MESSAGE.CREATE_MODAL, {
-            type: 'SUCCESS_NOTIFY',
+            type: "SUCCESS_NOTIFY",
             sub: {
-                messageKey: 'message.payment_success',
-                confirmButtonKey: 'button.close_title',
+                messageKey: "message.payment_success",
+                confirmButtonKey: "button.close_title",
             },
         } as CreateModalPayload);
     };

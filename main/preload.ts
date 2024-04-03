@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
+import { contextBridge, ipcRenderer, IpcRendererEvent } from "electron";
 
 const handler = {
     send(channel: string, value: unknown) {
@@ -22,6 +22,6 @@ const handler = {
     },
 };
 
-contextBridge.exposeInMainWorld('ipc', handler);
+contextBridge.exposeInMainWorld("ipc", handler);
 
 export type IpcHandler = typeof handler;

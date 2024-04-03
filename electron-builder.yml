@@ -1,5 +1,5 @@
 appId: com.example.nextron
-productName: Nextron App
+productName: Vendor Machine
 copyright: Copyright © 2018 Yoshihide Shiono
 directories:
   output: dist

@@ -14,6 +14,10 @@
             "modal_content": "Modal content",
             "cancel_button": "Cancel",
             "confirm_button": "Confirm"
+        },
+        "logout_modal": {
+            "title": "Logout Device",
+            "input_title": "Device Id"
         }
     },
     "message": {
@@ -24,6 +28,13 @@
     "button": {
         "close_title": "Close",
         "logout_title": "Logout",
+        "login_title": "Login",
         "cancel_title": "Cancel"
+    },
+    "login": {
+        "form_title": "Login",
+        "username": "Username",
+        "password": "Password",
+        "device_id": "Device id"
     }
 }

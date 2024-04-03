@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
-import { IPC_MESSAGE } from '@nextron-app/common';
-import { useRef } from 'react';
+import { useTranslation } from "react-i18next";
+import { IPC_MESSAGE } from "@nextron-app/common";
+import { useRef } from "react";
 
 type ProductProps = {
     id: number;
@@ -35,9 +35,9 @@ const ProductCard = (props: ProductProps) => {
         window.ipc.send(IPC_MESSAGE.ADD_TO_CART, item);
 
         if (item?.amount > 0) {
-            itemRef?.current?.classList?.add('prod-card-add');
+            itemRef?.current?.classList?.add("prod-card-add");
             setTimeout(() => {
-                itemRef?.current?.classList?.remove('prod-card-add');
+                itemRef?.current?.classList?.remove("prod-card-add");
             }, 1000);
         }
     };
@@ -45,7 +45,8 @@ const ProductCard = (props: ProductProps) => {
     return (
         <div
             ref={itemRef}
-            className="relative h-full w-full rounded-xl bg-white p-2 shadow-lg"
+            className="relative h-full w-full rounded-xl bg-white p-2 
+            shadow-[0_3px_6px_rgba(0,0,0,0.1),0_3px_6px_rgba(0,0,0,0.13)]"
             onClick={() => handleAddToCart({ ...props })}
         >
             <div className="relative h-3/5 w-full rounded-t-xl">

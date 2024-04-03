@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 type SubProps = {
     fontSize?: string;
+    background?: string;
 };
 
 const InputCustom = ({
     onChange,
     placeholder,
+    className,
     ...props
 }: React.InputHTMLAttributes<HTMLInputElement> & SubProps) => {
     const [isActive, setIsActive] = useState(false);
@@ -18,7 +20,7 @@ const InputCustom = ({
         <div className="relative" data-te-input-wrapper-init data-te-input-state-active>
             <input
                 type="text"
-                className="
+                className={`
                dark:peer-focus:text-primary 
                peer 
                block 
@@ -40,7 +42,10 @@ const InputCustom = ({
                data-[te-input-state-active]:placeholder:opacity-100 
                motion-reduce:transition-none 
                dark:text-gray-600 
-               dark:placeholder:text-gray-700 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+               dark:placeholder:text-gray-700 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0
+               ${props?.fontSize ? props.fontSize : ""}
+               ${className ? className : ""}
+               `}
                 id={`exampleFormControlInput-${placeholder}`}
                 placeholder={placeholder}
                 onChange={(e) => {
@@ -54,9 +59,9 @@ const InputCustom = ({
                 className={`
                   pointer-events-none 
                   absolute 
-                  left-3 
-                  top-0 
-                  mb-0 
+                  left-3
+                  top-0
+                  mb-0
                   max-w-[90%] 
                   origin-[0_0] 
                   truncate pt-[0.37rem] 
@@ -72,9 +77,10 @@ const InputCustom = ({
                   peer-focus:text-gray-600
                   motion-reduce:transition-none 
                   dark:text-gray-500 dark:peer-focus:text-gray-600 
-                  ${isActive ? '-translate-y-[0.9rem] scale-[0.8] bg-white px-1' : ''}
+                  ${isActive ? "-translate-y-[0.9rem] scale-[0.8] bg-white px-1" : ""}
                   peer-data-[te-input-state-active]:-translate-y-[0.9rem]
                   peer-data-[te-input-state-active]:scale-[0.8] 
+                  ${props?.fontSize ? props.fontSize : ""}
                `}
             >
                 {placeholder}

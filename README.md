@@ -1,7 +1,5 @@
 # nextron-app
 
-## Usage
-
 ### Create an App
 
 ```

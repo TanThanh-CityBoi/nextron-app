@@ -15,6 +15,8 @@ $ pnpm dlx create-nextron-app my-app --example with-tailwindcss
 
 ### Install Dependencies
 
+
+
 ```
 $ cd my-app
 

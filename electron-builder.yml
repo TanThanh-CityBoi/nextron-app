@@ -1,12 +1,31 @@
-appId: com.example.nextron
-productName: Nextron App
+appId: com.nextron-app.dev
+productName: nextron-app
 copyright: Copyright © 2018 Yoshihide Shiono
 directories:
-  output: dist
-  buildResources: resources
+    output: dist
+    buildResources: resources
 files:
-  - from: .
-    filter:
-      - package.json
-      - app
-publish: null
+    - from: .
+      filter:
+          - package.json
+          - app
+extraResources:
+    - from: ./resources
+    - filter:
+          - .env
+linux:
+    target: deb
+    category: Development
+    artifactName: "${productName}_${version}_${arch}.${ext}"
+    executableName: "nextron-app"
+    desktop:
+        Name: "NextronApp"
+        Type: Application
+        Terminal: false
+publish:
+    provider: github
+    owner: TanThanh-CityBoi
+    repo: nextron-app
+    private: false
+    releaseType: "release"
+    # token: <your github token>
